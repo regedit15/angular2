@@ -1,52 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+	selector: 'app-timer',
+	templateUrl: './timer.component.html',
+	styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit {
 
- 
 
-  minutos: number;
-  segundos: number;
-  isPaused: boolean;
-  buttonLabel: string;
 
-  constructor() {
-    this.resetTimer();
-    setInterval(() => this.tick(), 1000);
-  }
+	minutos: number;
+	segundos: number;
+	isPaused: boolean;
+	buttonLabel: string;
 
-  ngOnInit() {
-  }
+	constructor() {
+		this.resetTimer();
+		setInterval(() => this.tick(), 1000);
+	}
 
-  resetTimer(): void {
-    this.isPaused = true;
-    this.minutos = 0;
-    this.segundos = 10;
-    this.buttonLabel = 'Empezar';
-  }
+	ngOnInit() {
+	}
 
-  private tick(): void {
-    if (!this.isPaused) {
-      this.buttonLabel = 'Pausar';
+	resetTimer(): void {
+		this.isPaused = true;
+		this.minutos = 0;
+		this.segundos = 10;
+		this.buttonLabel = 'Empezar';
+	}
 
-      if (--this.segundos < 0) {
-        this.segundos = 59;
-        if (--this.minutos < 0) {
-          this.resetTimer();
-        }
-      }
-    }
-  }
+	private tick(): void {
+		if (!this.isPaused) {
+			this.buttonLabel = 'Pausar';
 
-  togglePause(): void {
-    this.isPaused = !this.isPaused;
-    if (this.minutos < 24 || this.segundos < 59) {
-      this.buttonLabel = this.isPaused ? 'Reanudar' : 'Pausar';
-    }
-  }
+			if (--this.segundos < 0) {
+				this.segundos = 59;
+				if (--this.minutos < 0) {
+					this.resetTimer();
+				}
+			}
+		}
+	}
+
+	togglePause(): void {
+		this.isPaused = !this.isPaused;
+		if (this.minutos < 24 || this.segundos < 59) {
+			this.buttonLabel = this.isPaused ? 'Reanudar' : 'Pausar';
+		}
+	}
+
+	// ----------
+	saludo = this.saludar('Holaaa', 'martin', 'pepe', 'manuel');
+
+	saludar(saludo: string, ...nombres: string[]): string{
+		return saludo +  ' ,' + nombres.join(' y ') + '!';
+	}
+
 
 }
