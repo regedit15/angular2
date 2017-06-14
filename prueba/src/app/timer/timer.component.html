@@ -1,0 +1,10 @@
+ <div class="text-center">
+ 	<img src="assets/img/reloj2.png" alt="Reloj">
+ 	<h1> {{ minutos }}:{{ segundos | number: '2.0' }} </h1>
+ 	<p>
+ 		<button (click)="togglePause()"
+ 		class="btn btn-danger">
+ 		{{ buttonLabel }}
+ 	</button>
+ </p>
+</div>
