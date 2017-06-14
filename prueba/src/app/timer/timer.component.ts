@@ -24,8 +24,8 @@ export class TimerComponent implements OnInit {
 
   resetTimer(): void {
     this.isPaused = true;
-    this.minutos = 24;
-    this.segundos = 59;
+    this.minutos = 0;
+    this.segundos = 10;
     this.buttonLabel = 'Empezar';
   }
 
