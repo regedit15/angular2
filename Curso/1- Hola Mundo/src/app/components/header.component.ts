@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'hero-detail',
+  moduleId: module.id,
+  selector: 'app-header',
+  templateUrl: 'header.component.html'
 })
-export class HeroDetailComponent {
+export class HeaderComponent {
+
+
 }

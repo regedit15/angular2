@@ -1,0 +1,38 @@
+<h1>Directivas Estructurales</h1>
+
+<hr>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <h3>*ng-if</h3>
+    <hr>
+
+    <button type="button" class="btn btn-outline-primary btn-block" (click)="mostrar = !mostrar">Mostrar/Ocultar</button>
+    <br>
+    <div *ngIf="mostrar" class="card card-inverse card-primary mb-3 text-center">
+      <div class="card-block">
+        <blockquote class="card-blockquote">
+          <p>{{texto}}</p>
+          <footer>El señor <cite title="Source Title">{{nombre}}</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+  <div class="col-md-6">
+    <h3>*ng-for</h3>
+    <hr>
+
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let persona of personas; let i = index">
+        {{i + 1 }} - {{persona}}
+      </li>
+    </ul>
+  </div>
+
+</div>
