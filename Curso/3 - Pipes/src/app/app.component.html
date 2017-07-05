@@ -1,0 +1,62 @@
+<div class="container">
+  <br>
+  <h1>Pipes</h1>
+  <hr>
+
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Variable</th>
+        <th>Pipe</th>
+        <th>Producto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> {{nombre}} </td>
+        <td> uppercase </td>
+        <td> {{nombre | uppercase}} </td>
+      </tr>
+      <tr>
+        <td> {{nombre}} </td>
+        <td> lowercase </td>
+        <td> {{nombre | lowercase}} </td>
+      </tr>
+      <tr>
+        <td> {{nombre}} </td>
+        <td> slice: 3 </td>
+        <td> {{nombre | slice: 3 }} </td>
+      </tr>
+      <tr>
+        <td> {{nombre}} </td>
+        <td> slice: 0:3 </td>
+        <td> {{nombre | slice: 0:3 }} </td>
+      </tr>
+      <tr>
+        <td> {{lista}}</td>
+        <td> slice: 1:5 </td>
+        <td> {{lista | slice: 1:5 }} </td>
+      </tr>
+      <tr>
+        <td> {{PI}}</td>
+        <td> number:'3.0-0' </td>
+        <td> {{PI | number:'3.0-0'}} </td>
+      </tr>
+      <tr>
+        <td> {{PI}}</td>
+        <td> number:'1.0-2' </td>
+        <td> {{PI | number:'1.0-2'}} </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4>Slice</h4>
+  <table>
+    <ul>
+      <li *ngFor="let item of lista | slice:5:20">{{item}}</li>
+    </ul>
+  </table>
+
+</div>
