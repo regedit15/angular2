@@ -1,5 +1,16 @@
-<h1>Héroer <small>Marvel y DC</small></h1>
+<h1>Héroer <small>Marvel y DC</small> que contienen "{{termino}}"</h1>
 <hr>
+
+<div class="row"
+    *ngIf="!heroes.length">
+	<div class="col-md-12">
+		<div class="alert alert-info"
+		    role="alert">
+			No existe resultados con el término: "{{termino}}"
+		</div>
+	</div>
+</div>
+
 <div class="card-columns">
 
 	<div class="card animated fadeIn fast"
