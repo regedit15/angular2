@@ -10,6 +10,7 @@ export class SpotifyService {
 
   urlBusqueda: string = "https://api.spotify.com/v1/search";
   urlArtista: string = "https://api.spotify.com/v1/artists";
+  token: string = "BQAxpn1715C_vXRPKz_igiRKfeI7ykhjLkmRkTt8DZVeFzYVa8-53pqkBXtXIW7Y6i7X6_TFDipDotwq_4GKhg";
 
   // private http: Http
   constructor(private http: Http) {
@@ -17,18 +18,40 @@ export class SpotifyService {
 
   getArtistas(termino: string) {
     let headers = new Headers();
-    headers.append('authorization', 'Bearer BQAY0jV4bjrWsrIbmvvJc_khxAWwAHLif_7ErWyN27jmWrUapsu7FFugopRiQxQuPCGeeg9B_2vohb9hT_Fq8A');
+    headers.append('authorization', `Bearer ${this.token}`);
 
     let query = `?q=${termino}&type=artist`;
     let url = this.urlBusqueda + query;
 
     return this.http.get(url, { headers }).map(res => {
-      //   console.log(res);
-      //   this.artistas = res.json().artists.items;
-
-      return res.json().artists.items;
+      this.artistas = res.json().artists.items;
     });
+  }
 
+  getArtista(id: string) {
+    let headers = new Headers();
+    headers.append('authorization', `Bearer ${this.token}`);
+
+    let query = `/${id}`;
+    let url = this.urlArtista + query;
+
+    return this.http.get(url, { headers }).map(res => {
+      console.log(res.json());
+      return res.json();
+    });
+  }
+
+  getTop(id: string) {
+    let headers = new Headers();
+    headers.append('authorization', `Bearer ${this.token}`);
+
+    let query = `/${id}/top-tracks?country=US`;
+    let url = this.urlArtista + query;
+
+    return this.http.get(url, { headers }).map(res => {
+      console.log(res.json().tracks);
+      return res.json().tracks;
+    });
   }
 
 }
