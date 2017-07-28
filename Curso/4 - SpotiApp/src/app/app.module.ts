@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SpotifyService } from './services/spotify.service';
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
 import { ArtistaComponent } from './components/artista/artista.component';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ArtistaComponent } from './components/artista/artista.component';
     SearchComponent,
     NavbarComponent,
     SinfotoPipe,
-    ArtistaComponent
+    ArtistaComponent,
+    DomseguroPipe
   ],
   imports: [
     BrowserModule,
