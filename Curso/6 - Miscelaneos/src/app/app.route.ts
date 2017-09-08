@@ -3,7 +3,6 @@ import { HomeComponent } from './components/home/home.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { USUARIO_ROUTES } from './components/usuario/usuario.route';
 
-
 const APP_ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   {
