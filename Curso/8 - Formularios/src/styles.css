@@ -2,3 +2,8 @@
 .main-container{
     margin-top: 50px;
 }
+
+.paddingSelect{
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
