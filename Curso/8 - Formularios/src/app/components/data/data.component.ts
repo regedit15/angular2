@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-data',
@@ -8,13 +8,26 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class DataComponent implements OnInit {
 
-    forma: FormGroup;
+    formulario: FormGroup;
+
+    usuario: any = {
+        nombreCompleto: {
+            nombre: "Martin",
+            apellido: "Rossi"
+        }
+        ,
+        correo: "martinrossi9009@gmail.com"
+    };
 
     constructor() {
-        this.forma = new FormGroup({
-            'nombre': new FormControl('Martin'),
-            'apellido': new FormControl(),
-            'correo': new FormControl(),
+        this.formulario = new FormGroup({
+
+            'nombreCompleto': new FormGroup({
+                'nombre': new FormControl(this.usuario.nombreCompleto.nombre, [Validators.required, Validators.minLength(3)]),
+                'apellido': new FormControl('', [Validators.required]),
+            }),
+
+            'correo': new FormControl(this.usuario.correo, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$")]),
         });
 
     }
@@ -23,9 +36,10 @@ export class DataComponent implements OnInit {
     }
 
     guardar() {
-        console.log("sadasdasd")
-        console.log(this.forma.value);
-        console.log(this.forma);
+
+        console.log("sadasdasd");
+        console.log(this.formulario.value);
+        console.log(this.formulario);
     }
 
 }

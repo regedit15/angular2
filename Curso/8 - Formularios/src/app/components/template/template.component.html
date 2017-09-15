@@ -1,21 +1,23 @@
-<h4>Formularios <small>template</small></h4>
+<h4>Formularios
+    <small>template</small>
+</h4>
 <hr>
 <form (ngSubmit)="guardar(formulario)"
-    #formulario="ngForm"
-    novalidate>
+      #formulario="ngForm"
+      novalidate>
 
     <div class="form-group row has-error">
         <label class="col-2 col-form-label">Nombre</label>
         <div class="col-8">
             <input class="form-control"
-                [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
-                type="text"
-                placeholder="Nombre"
-                name="nombre"
-                [(ngModel)]="usuario.nombre"
-                minlength="5"
-                required
-                #nombre="ngModel">
+                   [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
+                   type="text"
+                   placeholder="Nombre"
+                   name="nombre"
+                   [(ngModel)]="usuario.nombre"
+                   minlength="5"
+                   required
+                   #nombre="ngModel">
 
             <div class="invalid-feedback">
                 <div *ngIf="nombre.errors?.required">
@@ -32,14 +34,14 @@
         <label class="col-2 col-form-label">Apellido</label>
         <div class="col-8">
             <input class="form-control"
-                [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
-                type="text"
-                placeholder="Apellido"
-                name="apellido"
-                [(ngModel)]="usuario.apellido"
-                minlength="5"
-                required
-                #apellido="ngModel">
+                   [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
+                   type="text"
+                   placeholder="Apellido"
+                   name="apellido"
+                   [(ngModel)]="usuario.apellido"
+                   minlength="5"
+                   required
+                   #apellido="ngModel">
 
             <div class="invalid-feedback">
                 <div *ngIf="apellido.errors?.required">
@@ -55,15 +57,15 @@
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
             <input class="form-control"
-                [ngClass]="{'is-invalid': correo.errors && correo.touched}"
-                type="email"
-                placeholder="Correo electrónico"
-                name="correo"
-                [(ngModel)]="usuario.correo"
-                minlength="5"
-                required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                #correo="ngModel">
+                   [ngClass]="{'is-invalid': correo.errors && correo.touched}"
+                   type="email"
+                   placeholder="Correo electrónico"
+                   name="correo"
+                   [(ngModel)]="usuario.correo"
+                   minlength="5"
+                   required
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                   #correo="ngModel">
 
             <div class="invalid-feedback">
                 <div *ngIf="correo.errors?.required">
@@ -80,8 +82,8 @@
         <label class="col-2 col-form-label">Pais</label>
         <div class="col-8">
             <select class="form-control paddingSelect"
-                name="pais"
-                [(ngModel)]="usuario.pais">
+                    name="pais"
+                    [(ngModel)]="usuario.pais">
                 <option value="">Seleccione un pais</option>
                 <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
             </select>
@@ -92,19 +94,20 @@
         <label class="col-2 col-form-label">Pais</label>
         <div class="col-8">
             <label class="custom-control custom-radio">
-              <input name="sexo" type="radio"
-                 class="custom-control-input"
-                 [(ngModel)]="usuario.sexo"
-                 value="M">
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Hombre</span>
+                <input name="sexo"
+                       type="radio"
+                       class="custom-control-input"
+                       [(ngModel)]="usuario.sexo"
+                       value="M">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Hombre</span>
             </label>
             <label class="custom-control custom-radio">
-              <input name="sexo" type="radio" class="custom-control-input"
-              [(ngModel)]="usuario.sexo"
-              value="F">
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Mujer</span>
+                <input name="sexo" type="radio" class="custom-control-input"
+                       [(ngModel)]="usuario.sexo"
+                       value="F">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Mujer</span>
             </label>
         </div>
     </div>
@@ -114,13 +117,13 @@
         <label class="col-2 col-form-label">Color Favorito</label>
         <div class="col-8">
             <label *ngFor="let color of colores"
-                class="custom-control custom-radio">
-              <input name="color" type="radio"
-                 class="custom-control-input"
-                 [(ngModel)]="usuario.color"
-                 value="{{color.codigo}}">
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">{{color.nombre}}</span>
+                   class="custom-control custom-radio">
+                <input name="color" type="radio"
+                       class="custom-control-input"
+                       [(ngModel)]="usuario.color"
+                       value="{{color.codigo}}">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{color.nombre}}</span>
             </label>
         </div>
     </div>
@@ -130,31 +133,28 @@
         <label class="col-2 col-form-label">Terminos y Condiciones</label>
         <div class="col-8">
             <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input"
-              [(ngModel)]="usuario.acepta"
-              name="acepta" required>
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Acepta las condiciones</span>
+                <input type="checkbox" class="custom-control-input"
+                       [(ngModel)]="usuario.acepta"
+                       name="acepta" required>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Acepta las condiciones</span>
             </label>
         </div>
     </div>
-
-
 
 
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
             <button type="submit"
-                [disabled]="formulario.invalid"
-                class="btn btn-outline-primary">
-        Guardar
-      </button>
+                    [disabled]="formulario.invalid"
+                    class="btn btn-outline-primary">
+                Guardar
+            </button>
         </div>
     </div>
 
 </form>
-
 
 
 {{usuario | json}}
