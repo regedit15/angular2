@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-template',
     templateUrl: './template.component.html',
     styles: [`
-        .ng-invalid.ng-touched:not(form){
+        .ng-invalid.ng-touched:not(form) {
             border: 1px solid red;
         }
     `]
@@ -26,29 +26,30 @@ export class TemplateComponent implements OnInit {
         codigo: "CRI",
         nombre: "Costa Rica"
     },
-    {
-        codigo: "AR",
-        nombre: "Argentina"
-    },
-    {
-        codigo: "EU",
-        nombre: "Estados Unidos"
-    }];
+        {
+            codigo: "AR",
+            nombre: "Argentina"
+        },
+        {
+            codigo: "EU",
+            nombre: "Estados Unidos"
+        }];
 
     colores = [{
         codigo: "R",
         nombre: "Rojo"
     },
-    {
-        codigo: "V",
-        nombre: "Verde"
-    },
-    {
-        codigo: "A",
-        nombre: "Azul"
-    }];
+        {
+            codigo: "V",
+            nombre: "Verde"
+        },
+        {
+            codigo: "A",
+            nombre: "Azul"
+        }];
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
     }

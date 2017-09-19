@@ -34,7 +34,17 @@
                 <input class="form-control"
                        type="text"
                        placeholder="Apellido"
-                       formControlName="apellido">
+                       formControlName="apellido"
+                       [ngClass]="{' is-invalid' : formulario.get('nombreCompleto.apellido').errors && formulario.get('nombreCompleto.apellido').touched}">
+
+                <div class="invalid-feedback">
+                    <div *ngIf="formulario.get('nombreCompleto.apellido').errors?.required">
+                        Este campo es requerido
+                    </div>
+                    <div *ngIf="formulario.get('nombreCompleto.apellido').errors?.minlength">
+                        Por lo menos 3 caracteres
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -45,7 +55,17 @@
             <input class="form-control"
                    type="email"
                    placeholder="Correo electrónico"
-                   formControlName="correo">
+                   formControlName="correo"
+                   [ngClass]="{' is-invalid' : formulario.get('correo').errors && formulario.get('correo').touched}">
+
+            <div class="invalid-feedback">
+                <div *ngIf="formulario.get('correo').errors?.required">
+                    Este campo es requerido
+                </div>
+                <div *ngIf="formulario.get('correo').errors?.pattern">
+                    Ingrese un mail valido
+                </div>
+            </div>
         </div>
     </div>
 

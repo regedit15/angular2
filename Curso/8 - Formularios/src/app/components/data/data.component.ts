@@ -14,8 +14,7 @@ export class DataComponent implements OnInit {
         nombreCompleto: {
             nombre: "Martin",
             apellido: "Rossi"
-        }
-        ,
+        },
         correo: "martinrossi9009@gmail.com"
     };
 
@@ -23,13 +22,14 @@ export class DataComponent implements OnInit {
         this.formulario = new FormGroup({
 
             'nombreCompleto': new FormGroup({
-                'nombre': new FormControl(this.usuario.nombreCompleto.nombre, [Validators.required, Validators.minLength(3)]),
-                'apellido': new FormControl('', [Validators.required]),
+                'nombre': new FormControl('', [Validators.required, Validators.minLength(3)]),
+                'apellido': new FormControl('', [Validators.required, Validators.minLength(3)]),
             }),
 
-            'correo': new FormControl(this.usuario.correo, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$")]),
+            'correo': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$")]),
         });
 
+        this.formulario.setValue(this.usuario);
     }
 
     ngOnInit() {
@@ -40,6 +40,16 @@ export class DataComponent implements OnInit {
         console.log("sadasdasd");
         console.log(this.formulario.value);
         console.log(this.formulario);
+
+        this.formulario.reset({
+            nombreCompleto: {
+                nombre: "",
+                apellido: ""
+            },
+            correo: ""
+        });
+
+
     }
 
 }
