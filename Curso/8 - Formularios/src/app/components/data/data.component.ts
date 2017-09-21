@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 
 @Component({
     selector: 'app-data',
@@ -15,7 +15,8 @@ export class DataComponent implements OnInit {
             nombre: "Martin",
             apellido: "Rossi"
         },
-        correo: "martinrossi9009@gmail.com"
+        correo: "martinrossi9009@gmail.com",
+        pasatiempos: ["Correr"]
     };
 
     constructor() {
@@ -23,10 +24,14 @@ export class DataComponent implements OnInit {
 
             'nombreCompleto': new FormGroup({
                 'nombre': new FormControl('', [Validators.required, Validators.minLength(3)]),
-                'apellido': new FormControl('', [Validators.required, Validators.minLength(3)]),
+                'apellido': new FormControl('', [Validators.required, this.noHerrera]),
             }),
 
             'correo': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$")]),
+
+            'pasatiempos': new FormArray([
+                new FormControl('Correr', Validators.required)
+            ])
         });
 
         this.formulario.setValue(this.usuario);
@@ -52,4 +57,22 @@ export class DataComponent implements OnInit {
 
     }
 
+    agregarPasatiempo() {
+        (<FormArray>this.formulario.controls['pasatiempos']).push(
+            new FormControl('', Validators.required)
+        )
+    }
+
+
+    noHerrera(control: FormControl) {
+        if (control.value === 'herrera') {
+            return {
+                noherrera: true
+            }
+        }
+
+        return null;
+
+    }
 }
+
