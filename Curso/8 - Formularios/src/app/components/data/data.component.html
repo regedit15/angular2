@@ -44,6 +44,9 @@
                     <div *ngIf="formulario.get('nombreCompleto.apellido').errors?.minlength">
                         Por lo menos 3 caracteres
                     </div>
+                    <div *ngIf="formulario.get('nombreCompleto.apellido').errors?.noherrera">
+                        No se puede poner el apellido "herrera"
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +67,63 @@
                 </div>
                 <div *ngIf="formulario.get('correo').errors?.pattern">
                     Ingrese un mail valido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Usuario</label>
+        <div class="col-md-8">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Usuario"
+                   formControlName="username"
+                   [ngClass]="{' is-invalid' : formulario.get('username').errors && formulario.get('password1').touched}">
+
+            <div class="invalid-feedback">
+                <div *ngIf="formulario.get('username').errors?.required">
+                    Este campo es requerido
+                </div>
+                <div *ngIf="formulario.get('username').errors?.existe">
+                    Usuario existente
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Password</label>
+        <div class="col-md-8">
+            <input class="form-control"
+                   type="password"
+                   placeholder="Password"
+                   formControlName="password1"
+                   [ngClass]="{' is-invalid' : formulario.get('password1').errors && formulario.get('password1').touched}">
+
+            <div class="invalid-feedback">
+                <div *ngIf="formulario.get('password1').errors?.required">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Repetir Password</label>
+        <div class="col-md-8">
+            <input class="form-control"
+                   type="password"
+                   placeholder="Repetir Password"
+                   formControlName="password2"
+                   [ngClass]="{' is-invalid' : formulario.get('password2').errors && formulario.get('password2').touched}">
+
+            <div class="invalid-feedback">
+                <div *ngIf="formulario.get('password2').errors?.required">
+                    Este campo es requerido
+                </div>
+                <div *ngIf="formulario.get('password2').errors?.noiguales">
+                    Las passords no son iguales
                 </div>
             </div>
         </div>
@@ -102,4 +162,6 @@
 </form>
 
 formulario.valid: {{formulario.valid}}
+<br>
+formulario.status: {{formulario.status}}
 
