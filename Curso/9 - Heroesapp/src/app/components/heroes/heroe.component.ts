@@ -24,6 +24,11 @@ export class HeroeComponent implements OnInit {
         this.activatedRoute.params.subscribe(parametros => {
             console.log(parametros);
             this.id = parametros['id'];
+
+            if (this.id !== 'nuevo') {
+                this.heroeService.getHeroe(this.id).subscribe(heroe => this.heroe = heroe);
+            }
+
         });
     }
 
@@ -34,24 +39,37 @@ export class HeroeComponent implements OnInit {
         console.log(this.heroe);
 
         if (this.id === 'nuevo') {
+            // ese objeto data, es el que nos devuelve el firebase despues de hacer un post,
+            // con el id (parametro name) del objeto guardado
+            // https://firebase.google.com/docs/reference/rest/database/?authuser=0
+            // ejemplo: { "name": "-INOQPH-aV_psbk3ZXEX" }
+            this.heroeService.nuevoHero(this.heroe).subscribe(data => {
 
+                // esto no es un submit, solo es un redirect, osea que solo va a cambiar el id
+                // de la url de heroe, por lo tanto es valido
+                this.router.navigate(['/heroe', data.name])
+            }, error => {
+                console.error(error);
+            });
 
         } else {
 
+            this.heroeService.actualizarHero(this.heroe, this.id).subscribe(heroe => {
+                console.log(heroe);
+            }, error => {
+                console.error(error);
+            });
         }
-
-        // ese objeto data, es el que nos devuelve el firebase despues de hacer un post,
-        // con el id (parametro name) del objeto guardado
-        // https://firebase.google.com/docs/reference/rest/database/?authuser=0
-        // ejemplo: { "name": "-INOQPH-aV_psbk3ZXEX" }
-        this.heroeService.nuevoHero(this.heroe).subscribe(data => {
-
-            // esto no es un submit, solo es un redirect, osea que solo va a cambiar el id
-            // de la url de heroe, por lo tanto es valido
-            this.router.navigate(['/heroe', data.name])
-        }, error => {
-            console.error(error)
-        });
     }
+
+    nuevoHeroe(formulario: NgForm) {
+        this.router.navigate(['/heroe', 'nuevo']);
+
+        formulario.reset({
+            casa: 'Marvel'
+        });
+
+    }
+
 
 }

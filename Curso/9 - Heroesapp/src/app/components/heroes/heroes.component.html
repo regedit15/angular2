@@ -2,42 +2,54 @@
 <hr>
 
 <div class="row ">
-  <div class="col-md-12 text-right">
-    <button
-      [routerLink]="['/heroe', 'nuevo']"
-      type="button"
-      class="btn btn-outline-primary">
-      Nuevo héroe
-    </button>
-  </div>
+    <div class="col-md-12 text-right">
+        <button
+            [routerLink]="['/heroe', 'nuevo']"
+            type="button"
+            class="btn btn-outline-primary">
+            Nuevo héroe
+        </button>
+    </div>
 </div>
 <br>
 
 <div class="row animated fadeIn fast">
-  <div class="col-md-12">
+    <div class="col-md-12">
 
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="thead-inverse">
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Casa</th>
-          <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Casa</th>
+                    <th class="text-right">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let k of heroes | keys; let index = index">
+                    <td>{{heroes[k].nombre}}</td>
+                    <td>{{heroes[k].casa}}</td>
+                    <td class="text-right w230">
+                        <button
+                            [routerLink]="['/heroe', k]"
+                            type="button"
+                            class="btn btn-outline-success">
+                            Editar
+                        </button>
+                        <button
+                            (click)="borrar(k)"
+                            type="button"
+                            class="btn btn-outline-danger">
+                            Borrar
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
 
     </div>
-
-  </div>
 
 </div>
