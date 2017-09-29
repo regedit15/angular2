@@ -9,6 +9,7 @@ import {HeroesService} from '../../services/heroes.service';
 export class HeroesComponent implements OnInit {
 
     heroes;
+    loading = true;
 
     constructor(private heroeService: HeroesService) {
         this.heroeService.getHeroes().subscribe(heroes => {
@@ -23,7 +24,11 @@ export class HeroesComponent implements OnInit {
             //
             //     heroes.push(heroes[key$]);
             // }
-            this.heroes = heroes;
+
+            setTimeout(() => {
+                this.loading = false;
+                this.heroes = heroes;
+            }, 1000)
         });
     }
 
