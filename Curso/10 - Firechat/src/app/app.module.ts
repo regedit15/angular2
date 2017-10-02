@@ -10,11 +10,13 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {ChatComponent} from './components/chat/chat.component';
 import {FormsModule} from '@angular/forms';
 import { ChatService } from './services/chat.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ChatComponent
+        ChatComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
