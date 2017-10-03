@@ -1,17 +1,43 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome putooooooo!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+
+    <div class="container main-container">
+        <h1>FireChat</h1>
+        <hr>
+
+        <div class="row"
+             *ngIf="!chatService.usuario">
+            <div class="col-md-12 text-right">
+
+                <button type="button"
+                        class="btn btn-outline-danger"
+                        (click)="salir()">
+                    Salir
+                </button>
+            </div>
+
+        </div>
+
+        <app-login *ngIf="!chatService.usuario"></app-login>
+
+        <div *ngIf="chatService.usuario"
+             class="chat-window">
+            <app-chat></app-chat>
+        </div>
+    </div>
+
+
+    <ul>
+        <li class="text"
+            *ngFor="let chat of chats| async">
+            {{ chat | json }}
+        </li>
+    </ul>
+
 </ion-content>
