@@ -33,14 +33,11 @@ export class ChatComponent implements OnInit {
             console.log(this.mensaje);
         }
 
-        this.chatService.agregarMensaje(this.mensaje);
-
-        //     .then(() => {
-        //         console.log('Hecho!');
-        //     }
-        // ).catch((error) => {
-        //     console.error('Error!: ' + error);
-        // });
+        this.chatService.agregarMensaje(this.mensaje).then(() => {
+            console.log('Hecho!');
+        }, (error) => {
+            console.error('Error!: ' + error);
+        });
 
         this.mensaje = '';
     }
