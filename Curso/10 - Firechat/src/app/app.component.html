@@ -1,11 +1,26 @@
 <div class="container main-container">
     <h1>FireChat</h1>
     <hr>
-    <!--<div class="chat-window">-->
-    <!--<app-chat></app-chat>-->
-    <!--</div>-->
 
-    <app-login></app-login>
+    <div class="row"
+         *ngIf="!chatService.usuario">
+        <div class="col-md-12 text-right">
+
+            <button type="button"
+                    class="btn btn-outline-danger"
+                    (click)="salir()">
+                Salir
+            </button>
+        </div>
+
+    </div>
+
+    <app-login *ngIf="!chatService.usuario"></app-login>
+
+    <div *ngIf="chatService.usuario"
+         class="chat-window">
+        <app-chat></app-chat>
+    </div>
 </div>
 
 

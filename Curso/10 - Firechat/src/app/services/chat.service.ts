@@ -9,13 +9,18 @@ import * as firebase from 'firebase/app';
 export class ChatService {
 
     chats: FirebaseListObservable<any[]>;
-    usuario: any = {nombre: 'Juan Carlos'};
+    usuario: any = null;
 
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth) {
         // La documentacion oficial dice
         // this.items = angularFireDb.list('items').valueChanges()
         // pero da un error
         // this.chats = angularFireDb.list('chats');
+        let usuarioGuardado = localStorage.getItem('usuario');
+
+        if (usuarioGuardado) {
+            this.usuario = JSON.parse(usuarioGuardado);
+        }
     }
 
     cargarMensaje() {
@@ -32,8 +37,9 @@ export class ChatService {
     agregarMensaje(texto: string) {
 
         let mensaje: Mensaje = {
-            nombre: 'Juan Carlos',
-            mensaje: texto
+            nombre: this.usuario.displayName,
+            mensaje: texto,
+            uid: this.usuario.uid
         };
 
 
@@ -42,13 +48,28 @@ export class ChatService {
     }
 
     login(proveedor: string) {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+
+        let provider;
+
+        if (proveedor === 'google') {
+            provider = new firebase.auth.GoogleAuthProvider();
+        } else {
+            provider = new firebase.auth.TwitterAuthProvider();
+        }
+
+        this.afAuth.auth.signInWithPopup(provider)
             .then(respuesta => {
                 console.log(respuesta);
+                this.usuario = respuesta.user;
+
+                // se guarda en el local storage
+                localStorage.setItem('usuario', JSON.stringify(this.usuario));
             });
     }
 
     logout() {
+        localStorage.removeItem('usuario');
+        this.usuario = null;
         this.afAuth.auth.signOut();
     }
 }

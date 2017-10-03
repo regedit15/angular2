@@ -6,9 +6,9 @@
 
     <div class="text-right"
          *ngFor="let chat of chatService.chats | async"
-         [ngClass]="{'text-right': chatService.usuario.nombre === chat.nombre}">
+         [ngClass]="{'text-right': chatService.usuario.uid === chat.uid}">
         <span class="badge"
-              [ngClass]="chatService.usuario.nombre === chat.nombre ? 'badge-warning' : 'badge-primary'">
+              [ngClass]="chatService.usuario.uid === chat.uid ? 'badge-warning' : 'badge-primary'">
             {{chat.nombre}}</span>
         <p>
             {{chat.mensaje}}
