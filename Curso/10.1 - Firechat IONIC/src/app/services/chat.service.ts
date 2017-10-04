@@ -11,35 +11,11 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class ChatService {
 
-    // chats: FirebaseListObservable<any[]>;
-    // chats: FirebaseListObservable<any[]>;
-
     chats: any;
-    // chats: FirebaseListObservable<any[]>;
     usuario: any = null;
-
-    // chats: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
     size$: BehaviorSubject<string | null>;
 
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth) {
-        // La documentacion oficial dice
-        // this.items = angularFireDb.list('items').valueChanges()
-        // pero da un error
-        // this.chats = angularFireDb.list('chats');
-
-        // this.chats = angularFireDb.list('chats').valueChanges().subscribe();
-
-
-        // this.size$ = new BehaviorSubject(null);
-
-        // this.chats = this.size$.switchMap(size =>
-        //     this.angularFireDb.list('chats', () => {
-        //             console.log('aaaaaaaaa');
-        //         }
-        //     )
-        // );
-
-        // this.chats = angularFireDb.list('items');
 
         let usuarioGuardado = localStorage.getItem('usuario');
 
@@ -49,20 +25,7 @@ export class ChatService {
     }
 
     cargarMensaje() {
-        // // this.angularFireDb.list('chats', ref => ref.orderByChild('size'));
-        //
-        // this.size$ = new BehaviorSubject(null);
-        //
-        // this.chats = this.size$.switchMap(size =>
-        //     this.angularFireDb.list('chats', ref => {
-        //             console.log('aaaaaaaaa');
-        //         }
-        //     )
-        // );
-        //
-        // return this.chats;
         this.chats = this.angularFireDb.list('chats').valueChanges();
-
         return this.chats;
     }
 
@@ -74,10 +37,6 @@ export class ChatService {
             uid: this.usuario.uid
         };
 
-
-        // esto regresa una promesa
-        // return this.chats.push(mensaje);
-
         return this.angularFireDb.list('chats').push(mensaje)
     }
 
@@ -85,24 +44,46 @@ export class ChatService {
 
         let provider;
 
-        if (proveedor === 'google') {
-            provider = new firebase.auth.GoogleAuthProvider();
-        } else {
-            provider = new firebase.auth.TwitterAuthProvider();
+
+        switch (proveedor) {
+            case 'google':
+                provider = new firebase.auth.GoogleAuthProvider();
+                break;
+            case 'facebook':
+                provider = new firebase.auth.FacebookAuthProvider();
+
+
+                break;
+            case 'google':
+                provider = new firebase.auth.TwitterAuthProvider();
+                break;
         }
 
-        this.afAuth.auth.signInWithPopup(provider)
-            .then(respuesta => {
-                console.log(respuesta);
-                this.usuario = respuesta.user;
 
-                // se guarda en el local storage
-                localStorage.setItem('usuario', JSON.stringify(this.usuario));
-            });
+        if (this.platform.is('cordova')) {
+            return this.fb.login(['email', 'public_profile']).then(res => {
+                const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+                return firebase.auth().signInWithCredential(facebookCredential);
+            })
+        }
+        else {
+
+            this.afAuth.auth.signInWithPopup(provider)
+                .then(respuesta => {
+                    console.log(respuesta);
+                    this.usuario = respuesta.user;
+
+                    // se guarda en el local storage
+                    // localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                });
+
+        }
+
+
     }
 
     logout() {
-        localStorage.removeItem('usuario');
+        // localStorage.removeItem('usuario');
         this.usuario = null;
         this.afAuth.auth.signOut();
     }

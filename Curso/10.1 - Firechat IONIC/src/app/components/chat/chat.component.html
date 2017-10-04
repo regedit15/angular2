@@ -32,14 +32,18 @@
     <!--<ion-card-header>-->
     <!--Card Header-->
     <!--</ion-card-header>-->
+    <ion-card-content *ngFor="let chat of chatService.chats | async"
+                      [ngClass]="{'textoDerecha' : chatService.usuario.uid === chat.uid}">
 
-    <ion-card-content *ngFor="let chat of chatService.chats | async">
-        {{chat.nombre}}:
+        <ion-badge item-end
+                   [ngClass]="{'colorDestinatario' : chatService.usuario.uid !== chat.uid}">{{chat.nombre}}
+        </ion-badge>
+        <p> {{chat.mensaje}}</p>
 
-        {{chat.mensaje}}
     </ion-card-content>
 
 </ion-card>
+
 
 <!--<ion-item>-->
 <!--<ion-label fixed>Mensaje:</ion-label>-->
