@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,15 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.bontonWpp {
+    background-color: #53b971;
+    border-radius: 50%;
+    padding: 19px;
+    width: 0px;
+    height: 0px;
+}
+
+button.bontonWpp.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: #53b971;
+}
