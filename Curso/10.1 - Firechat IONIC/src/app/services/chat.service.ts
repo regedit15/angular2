@@ -7,6 +7,8 @@ import * as firebase from 'firebase/app';
 import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
+import {Facebook} from '@ionic-native/facebook';
+import {Platform} from 'ionic-angular';
 
 @Injectable()
 export class ChatService {
@@ -15,7 +17,7 @@ export class ChatService {
     usuario: any = null;
     size$: BehaviorSubject<string | null>;
 
-    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth) {
+    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private platform: Platform) {
 
         let usuarioGuardado = localStorage.getItem('usuario');
 
@@ -42,31 +44,61 @@ export class ChatService {
 
     login(proveedor: string) {
 
-        let provider;
-
-
-        switch (proveedor) {
-            case 'google':
-                provider = new firebase.auth.GoogleAuthProvider();
-                break;
-            case 'facebook':
-                provider = new firebase.auth.FacebookAuthProvider();
-
-
-                break;
-            case 'google':
-                provider = new firebase.auth.TwitterAuthProvider();
-                break;
-        }
-
 
         if (this.platform.is('cordova')) {
-            return this.fb.login(['email', 'public_profile']).then(res => {
-                const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-                return firebase.auth().signInWithCredential(facebookCredential);
-            })
+
+            let resultado;
+
+            switch (proveedor) {
+
+                case 'google':
+
+                    // respuesta = this.fb.login(['email', 'public_profile']).then(res => {
+                    //     const facebookCredential =
+                    // firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken); return
+                    // firebase.auth().signInWithCredential(facebookCredential); });
+                    break;
+
+                case 'facebook':
+
+                    resultado = this.fb.login(['email', 'public_profile']).then(respuesta => {
+
+                        console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+                        this.usuario = {
+                            displayName: 'usuario android',
+                            uid: 'UFOQSZkscfcwvqdazHPRpJBwOJU2'
+                        };
+
+                        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(respuesta.authResponse.accessToken);
+                        return firebase.auth().signInWithCredential(facebookCredential);
+                    });
+
+                    break;
+
+                case 'google':
+                    break;
+            }
+
+            return resultado;
+
         }
         else {
+
+            let provider;
+
+            switch (proveedor) {
+                case 'google':
+                    provider = new firebase.auth.GoogleAuthProvider();
+                    break;
+                case 'facebook':
+                    provider = new firebase.auth.FacebookAuthProvider();
+
+
+                    break;
+                case 'google':
+                    provider = new firebase.auth.TwitterAuthProvider();
+                    break;
+            }
 
             this.afAuth.auth.signInWithPopup(provider)
                 .then(respuesta => {
@@ -74,16 +106,13 @@ export class ChatService {
                     this.usuario = respuesta.user;
 
                     // se guarda en el local storage
-                    // localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                    localStorage.setItem('usuario', JSON.stringify(this.usuario));
                 });
-
         }
-
-
     }
 
     logout() {
-        // localStorage.removeItem('usuario');
+        localStorage.removeItem('usuario');
         this.usuario = null;
         this.afAuth.auth.signOut();
     }

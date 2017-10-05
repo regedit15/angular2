@@ -18,6 +18,7 @@ import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/datab
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {ChatService} from './services/chat.service';
+import {Facebook} from '@ionic-native/facebook';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import {ChatService} from './services/chat.service';
         SplashScreen,
         ChatService,
         AngularFireDatabase,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        Facebook
     ]
 })
 export class AppModule {

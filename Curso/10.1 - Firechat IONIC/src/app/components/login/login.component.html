@@ -1,41 +1,20 @@
-<!--<div class="row">-->
-<!--<div class="col-md-12 text-center">-->
-<!--<p>-->
-<!--Ingrese al chat con su cuenta favorita-->
-<!--</p>-->
-
-<!--<button type="button"-->
-<!--class="btn btn-outline-primary"-->
-<!--(click)="ingresar('google')">-->
-<!--Google-->
-<!--</button>-->
-
-<!--<button type="button"-->
-<!--(click)="ingresar('twitter')"-->
-<!--class="btn btn-outline-info">-->
-<!--Twitter-->
-<!--</button>-->
-<!--</div>-->
-
-
-<!--</div>-->
-
-
-<!--<ion-header>-->
-<!--<ion-navbar>-->
-<!--<ion-title>-->
-<!--Auth with Ionic-->
-<!--</ion-title>-->
-<!--</ion-navbar>-->
-<!--</ion-header>-->
-
-<!--<ion-content padding>-->
 <button ion-button
         outline
-        (click)="ingresar('google')">Google
+        color="danger"
+        (click)="ingresar('google')">
+    <ion-icon name="logo-googleplus"></ion-icon>
+    &nbsp;&nbsp;Google
 </button>
 <button ion-button
         outline
-        (click)="ingresar('twitter')">Twitter
+        (click)="ingresar('twitter')">
+    <ion-icon name="logo-twitter"></ion-icon>
+    &nbsp;&nbsp;Twitter
 </button>
-<!--</ion-content>-->
+<button ion-button
+        outline
+        color="dark"
+        (click)="ingresar('facebook')">
+    <ion-icon name="logo-facebook"></ion-icon>
+    &nbsp;&nbsp;Facebook
+</button>

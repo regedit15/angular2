@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title style="text-align: center">Firechat</ion-title>
+        <ion-title style="text-align: center">Firechat3</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -8,20 +8,16 @@
 
 
     <div class="container main-container">
-        <!--<h1>FireChat</h1>-->
-        <!--<hr>-->
-
         <div class="row"
              *ngIf="chatService.usuario">
             <div class="col-md-12 text-right">
-
-                <button type="button"
-                        class="btn btn-outline-danger"
+                <button ion-button
+                        outline
+                        color="danger"
                         (click)="salir()">
                     Salir
                 </button>
             </div>
-
         </div>
 
         <app-login *ngIf="!chatService.usuario"></app-login>
@@ -31,7 +27,6 @@
             <app-chat></app-chat>
         </div>
     </div>
-
 
     <ul>
         <li class="text"

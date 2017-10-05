@@ -1,37 +1,5 @@
-<!--<h3>Chat</h3>-->
-<!--<hr>-->
-
-
-<!--<ion-card>-->
-<!--<ion-card-header>-->
-<!--<ion-item>-->
-<!--<ion-label floating>Nombre</ion-label>-->
-<!--<ion-input type="text"-->
-<!--[(ngModel)]="nombreLista"></ion-input>-->
-<!--</ion-item>-->
-<!--</ion-card-header>-->
-
-<!--<ion-card-content>-->
-<!--<ion-item>-->
-<!--<ion-label floating>Item:</ion-label>-->
-<!--<ion-input type="text"-->
-<!--(keyup.enter)="agregar()"-->
-<!--[(ngModel)]="nombreItem"></ion-input>-->
-<!--</ion-item>-->
-
-<!--<button ion-button-->
-<!--(click)="agregar()"-->
-<!--class="button-block">Agregar</button>-->
-
-<!--</ion-card-content>-->
-<!--</ion-card>-->
-
-
 <ion-card style="max-width: 400px; margin-left: auto; margin-right: auto;">
 
-    <!--<ion-card-header>-->
-    <!--Card Header-->
-    <!--</ion-card-header>-->
     <ion-card-content *ngFor="let chat of chatService.chats | async"
                       [ngClass]="{'textoDerecha' : chatService.usuario.uid === chat.uid}">
 
@@ -44,50 +12,18 @@
 
 </ion-card>
 
-
-<!--<ion-item>-->
-<!--<ion-label fixed>Mensaje:</ion-label>-->
-<!--<ion-input type="text"-->
-<!--value=""-->
-<!--[(ngModel)]="mensaje"-->
-<!--(keyup.enter)="enviar()"></ion-input>-->
-
-
-<!--</ion-item>-->
-<!--<ion-icon name="md-send"></ion-icon>-->
-
-
 <br>
-
 
 <table style="margin: auto; width: 100%; max-width: 400px;">
     <tr>
         <td>
-
-            <!--<ion-item>-->
-            <!--<ion-input type="text"-->
-            <!--placeholder="Username"></ion-input>-->
-            <!--</ion-item>-->
             <ion-item>
-                <!--<ion-label fixed>Escribir mensaje</ion-label>-->
                 <ion-input type="text"
                            value=""
                            [(ngModel)]="mensaje"
                            placeholder="Escribir mensaje"
                            (keyup.enter)="enviar()"></ion-input>
             </ion-item>
-
-
-            <!--<ion-label fixed>Username</ion-label>-->
-            <!--<ion-input type="text"-->
-            <!--value=""></ion-input>-->
-
-
-            <!--<ion-input type="text"-->
-            <!--value=""-->
-            <!--placeholder="Escribir mensaje"-->
-            <!--[(ngModel)]="mensaje"-->
-            <!--(keyup.enter)="enviar()"></ion-input>-->
         </td>
         <td>
             <button
@@ -97,37 +33,11 @@
                 round>
                 <ion-icon name="md-send"></ion-icon>
             </button>
-
         </td>
     </tr>
 </table>
 
-
 <div id="app-mensajes"
      class="app-mensajes">
 
-    <!--<div class="text-right"-->
-    <!--*ngFor="let chat of chatService.chats | async"-->
-    <!--[ngClass]="{'text-right': chatService.usuario.uid === chat.uid}">-->
-    <!---->
-    <!--<span class="badge"-->
-    <!--[ngClass]="chatService.usuario.uid === chat.uid ? 'badge-warning' : 'badge-primary'">-->
-    <!--{{chat.nombre}}</span>-->
-    <!--<p>-->
-    <!--{{chat.mensaje}}-->
-    <!--</p>-->
-    <!--</div>-->
-
 </div>
-
-
-<!--<input-->
-<!--name="mensaje"-->
-<!--[(ngModel)]="mensaje"-->
-<!--(keyup.enter)="enviar()"-->
-<!--class="form-control"-->
-<!--placeholder="Mensaje...">-->
-
-<!--<ion-input type="text"-->
-<!--(keyup.enter)="enviar()"-->
-<!--[(ngModel)]="mensaje"></ion-input>-->
