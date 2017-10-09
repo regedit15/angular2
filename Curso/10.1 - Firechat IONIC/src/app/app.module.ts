@@ -20,6 +20,8 @@ import {environment} from '../environments/environment';
 import {ChatService} from './services/chat.service';
 import {Facebook} from '@ionic-native/facebook';
 
+// import {GooglePlus} from '@ionic-native/google-plus';
+
 @NgModule({
     declarations: [
         MyApp,

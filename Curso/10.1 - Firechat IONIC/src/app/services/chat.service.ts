@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAction, AngularFireDatabase} from 'angularfire2/database';
-import {Observable} from 'rxjs/Observable';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {Mensaje} from '../interfaces/mensaje.interface';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
 import {Facebook} from '@ionic-native/facebook';
 import {Platform} from 'ionic-angular';
+
+// import {GooglePlus} from '@ionic-native/google-plus';
 
 @Injectable()
 export class ChatService {
@@ -17,6 +17,7 @@ export class ChatService {
     usuario: any = null;
     size$: BehaviorSubject<string | null>;
 
+// , private googlePlus: GooglePlus
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private platform: Platform) {
 
         let usuarioGuardado = localStorage.getItem('usuario');
@@ -63,7 +64,6 @@ export class ChatService {
 
                     resultado = this.fb.login(['email', 'public_profile']).then(respuesta => {
 
-                        console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
                         this.usuario = {
                             displayName: 'usuario android',
                             uid: 'UFOQSZkscfcwvqdazHPRpJBwOJU2'
@@ -76,6 +76,27 @@ export class ChatService {
                     break;
 
                 case 'google':
+
+                    // this.googlePlus.login({})
+                    //     .then(res => {
+                    //
+                    //         console.log(res);
+                    //
+                    //         // this.displayName = res.displayName;
+                    //         // this.email = res.email;
+                    //         // this.familyName = res.familyName;
+                    //         // this.givenName = res.givenName;
+                    //         // this.userId = res.userId;
+                    //         // this.imageUrl = res.imageUrl;
+                    //         //
+                    //         // this.isLoggedIn = true;
+                    //
+                    //         this.usuario = {
+                    //             displayName: res.displayName,
+                    //             uid: 'UFOQSZkscfcwvqdazHPRpJBwOJU2'
+                    //         };
+                    //     })
+                    //     .catch(err => console.error(err));
                     break;
             }
 
@@ -92,10 +113,8 @@ export class ChatService {
                     break;
                 case 'facebook':
                     provider = new firebase.auth.FacebookAuthProvider();
-
-
                     break;
-                case 'google':
+                case 'twitter':
                     provider = new firebase.auth.TwitterAuthProvider();
                     break;
             }
