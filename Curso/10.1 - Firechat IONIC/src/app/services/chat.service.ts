@@ -7,8 +7,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
 import {Facebook} from '@ionic-native/facebook';
 import {Platform} from 'ionic-angular';
-
-// import {GooglePlus} from '@ionic-native/google-plus';
+import {GooglePlus} from '@ionic-native/google-plus';
 
 @Injectable()
 export class ChatService {
@@ -17,8 +16,7 @@ export class ChatService {
     usuario: any = null;
     size$: BehaviorSubject<string | null>;
 
-// , private googlePlus: GooglePlus
-    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private platform: Platform) {
+    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private googlePlus: GooglePlus, private platform: Platform) {
 
         let usuarioGuardado = localStorage.getItem('usuario');
 
@@ -51,23 +49,26 @@ export class ChatService {
             let resultado;
 
             switch (proveedor) {
-
-                case 'google':
-
-                    // respuesta = this.fb.login(['email', 'public_profile']).then(res => {
-                    //     const facebookCredential =
-                    // firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken); return
-                    // firebase.auth().signInWithCredential(facebookCredential); });
+                case 'twitter':
                     break;
 
                 case 'facebook':
 
                     resultado = this.fb.login(['email', 'public_profile']).then(respuesta => {
 
-                        this.usuario = {
-                            displayName: 'usuario android',
-                            uid: 'UFOQSZkscfcwvqdazHPRpJBwOJU2'
-                        };
+                        console.log(respuesta);
+
+
+                        this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
+                            function (response) {
+
+                                console.log(response);
+
+                                this.usuario = {
+                                    displayName: response.first_name,
+                                    uid: respuesta.authResponse.userID
+                                };
+                            });
 
                         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(respuesta.authResponse.accessToken);
                         return firebase.auth().signInWithCredential(facebookCredential);
@@ -77,26 +78,16 @@ export class ChatService {
 
                 case 'google':
 
-                    // this.googlePlus.login({})
-                    //     .then(res => {
-                    //
-                    //         console.log(res);
-                    //
-                    //         // this.displayName = res.displayName;
-                    //         // this.email = res.email;
-                    //         // this.familyName = res.familyName;
-                    //         // this.givenName = res.givenName;
-                    //         // this.userId = res.userId;
-                    //         // this.imageUrl = res.imageUrl;
-                    //         //
-                    //         // this.isLoggedIn = true;
-                    //
-                    //         this.usuario = {
-                    //             displayName: res.displayName,
-                    //             uid: 'UFOQSZkscfcwvqdazHPRpJBwOJU2'
-                    //         };
-                    //     })
-                    //     .catch(err => console.error(err));
+                    this.googlePlus.login({})
+                        .then(res => {
+                            this.usuario = {
+                                displayName: res.displayName,
+                                uid: res.userId
+                            };
+                        })
+                        .catch(
+                            err => console.error(err)
+                        );
                     break;
             }
 

@@ -20,7 +20,7 @@ import {environment} from '../environments/environment';
 import {ChatService} from './services/chat.service';
 import {Facebook} from '@ionic-native/facebook';
 
-// import {GooglePlus} from '@ionic-native/google-plus';
+import {GooglePlus} from '@ionic-native/google-plus';
 
 @NgModule({
     declarations: [
@@ -54,7 +54,8 @@ import {Facebook} from '@ionic-native/facebook';
         ChatService,
         AngularFireDatabase,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        Facebook
+        Facebook,
+        GooglePlus
     ]
 })
 export class AppModule {
