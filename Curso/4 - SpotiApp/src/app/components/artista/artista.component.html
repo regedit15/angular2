@@ -1,33 +1,38 @@
 <div *ngIf="artista"
-    class="container main-container animated fadeIn fast">
+     class="container main-container animated fadeIn fast">
     <div class="row">
 
         <div class="col-md-3 text-center">
             <img src="{{artista.images | sinfoto}}"
-                alt="artista"
-                class="img-fluid img-thumbnail img-circle">
+                 alt="artista"
+                 class="img-fluid img-thumbnail img-circle">
             <br>
         </div>
 
         <div class="col-md-9">
-            <h3>{{artista.name}} <small>Popularidad {{artista.popularity}}</small></h3>
+            <h3>{{artista.name}}
+                <small>Popularidad {{artista.popularity}}</small>
+            </h3>
             <hr>
 
-            <a href="{{persona2?.apellido}}"
-                class="btn btn-outline-success">111111111 página</a>
+            <!--<a href="{{persona2?.apellido}}"-->
+            <!--class="btn btn-outline-success">Página-->
+            <!--</a>-->
 
             <a href="{{artista.external_urls?.spotify}}"
-                class="btn btn-outline-success">Ver página</a>
+               class="btn btn-outline-success">Ver página
+            </a>
 
             <a [routerLink]="['/buscar']"
-                class="btn btn-outline-danger">Volver</a>
+               class="btn btn-outline-danger">Volver
+            </a>
         </div>
 
     </div>
 
     <hr>
     <div *ngIf="pistas"
-        class="container">
+         class="container">
         <h3>Top de {{artista.name}}</h3>
         <hr>
         <div class="row">
@@ -36,39 +41,39 @@
                 <div class="table-responsive">
                     <table class="table table-inverse table-hover">
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Foto</th>
-                                <th>Cancion</th>
-                                <th>Popularidad</th>
-                                <th>Preview</th>
-                            </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Foto</th>
+                            <th>Cancion</th>
+                            <th>Popularidad</th>
+                            <th>Preview</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let pista of pistas; let i = index;">
-                                <td>{{i+1}}</td>
-                                <td>
-                                    <img src="{{pista.album?.images | sinfoto}}"
-                                        alt="album"
-                                        class="img-fluid img-50">
-                                </td>
-                                <td>{{pista.name}}</td>
-                                <td>{{pista.popularity}}</td>
-                                <td>
-                                    <!-- <audio controls>
-                                        <source src="{{pista.preview_url}}">
-                                            Tu navetgador es muy viejo
-                                    </audio> -->
+                        <tr *ngFor="let pista of pistas; let i = index;">
+                            <td>{{i+1}}</td>
+                            <td>
+                                <img src="{{pista.album?.images | sinfoto}}"
+                                     alt="album"
+                                     class="img-fluid img-50">
+                            </td>
+                            <td>{{pista.name}}</td>
+                            <td>{{pista.popularity}}</td>
+                            <td>
+                                <!--<audio controls>-->
+                                <!--<source src="{{pista.preview_url}}">-->
+                                <!--Tu navetgador es muy viejo-->
+                                <!--</audio>-->
 
-                                    <!-- {{pista.uri | domseguro: 'https://open.spotify.com/embed?uri='"}} -->
+                                <!--{{pista.uri | domseguro: 'https://open.spotify.com/embed?uri='"}} -->
 
-                                    <!-- <iframe [src]="pista.uri | domseguro: 'https://open.spotify.com/embed?uri='"
+                                <iframe [src]="pista.uri | domseguro: 'https://open.spotify.com/embed?uri='"
                                         width="300"
                                         height="80"
                                         frameborder="0"
-                                        allowtransparency="true"></iframe> -->
-                                </td>
-                            </tr>
+                                        allowtransparency="true"></iframe>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
