@@ -8,6 +8,7 @@ import 'rxjs/add/operator/switchMap';
 import {Facebook} from '@ionic-native/facebook';
 import {Platform} from 'ionic-angular';
 import {GooglePlus} from '@ionic-native/google-plus';
+import {TwitterConnect} from '@ionic-native/twitter-connect';
 
 @Injectable()
 export class ChatService {
@@ -16,7 +17,7 @@ export class ChatService {
     usuario: any = null;
     size$: BehaviorSubject<string | null>;
 
-    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private googlePlus: GooglePlus, private platform: Platform) {
+    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private googlePlus: GooglePlus, private twitterConnect: TwitterConnect, private platform: Platform) {
 
         let usuarioGuardado = localStorage.getItem('usuario');
 
@@ -50,6 +51,21 @@ export class ChatService {
 
             switch (proveedor) {
                 case 'twitter':
+
+                    this.twitterConnect.login()
+                        .then(res => {
+
+                            console.log(res);
+
+                            this.usuario = {
+                                displayName: res.userName,
+                                uid: res.userId
+                            };
+                        })
+                        .catch(
+                            err => console.error(err)
+                        );
+
                     break;
 
                 case 'facebook':
@@ -58,9 +74,8 @@ export class ChatService {
 
                         console.log(respuesta);
 
-
                         this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
-                            function (response) {
+                            response => {
 
                                 console.log(response);
 

@@ -13,6 +13,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.bontonesLogin {
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    display: -webkit-box;
+    margin-bottom: 20px;
+}
 
 .bontonWpp {
     background-color: #53b971;
