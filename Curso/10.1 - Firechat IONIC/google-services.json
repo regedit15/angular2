@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "542750164397",
+    "firebase_url": "https://firechat-841dd.firebaseio.com",
+    "project_id": "firechat-841dd",
+    "storage_bucket": "firechat-841dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542750164397:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542750164397-k9bme4sl58h01c4n6hjrilbe14juegbf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "149b6e3f45acdd4ec314c85f69276ad194cab3ac"
+          }
+        },
+        {
+          "client_id": "542750164397-2q98e43igcueg4go5jv8aiadpanaukm4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "0342d686ecbe7bcb94b134d90bc6d577a816370a"
+          }
+        },
+        {
+          "client_id": "542750164397-71hbsoigglkrf8iq31kq02l7uvie0ujv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMiSSVHJStEoQC3RzbXsMu0RNJV97PdAs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542750164397-71hbsoigglkrf8iq31kq02l7uvie0ujv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
