@@ -18,10 +18,15 @@ import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/datab
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {ChatService} from './services/chat.service';
-import {Facebook} from '@ionic-native/facebook';
 
+// import {Facebook} from '@ionic-native/facebook';
 import {GooglePlus} from '@ionic-native/google-plus';
 import {TwitterConnect} from '@ionic-native/twitter-connect';
+import {Facebook} from '@ionic-native/facebook';
+// providers
+// Facebook,
+//   GooglePlus,
+//   TwitterConnect
 
 @NgModule({
     declarations: [
@@ -55,9 +60,9 @@ import {TwitterConnect} from '@ionic-native/twitter-connect';
         ChatService,
         AngularFireDatabase,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        Facebook,
         GooglePlus,
-        TwitterConnect
+        TwitterConnect,
+        Facebook
     ]
 })
 export class AppModule {

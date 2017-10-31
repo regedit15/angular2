@@ -5,10 +5,11 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
-import {Facebook} from '@ionic-native/facebook';
+// import {Facebook} from '@ionic-native/facebook';
 import {Platform} from 'ionic-angular';
 import {GooglePlus} from '@ionic-native/google-plus';
 import {TwitterConnect} from '@ionic-native/twitter-connect';
+import {Facebook} from '@ionic-native/facebook';
 
 @Injectable()
 export class ChatService {
@@ -17,7 +18,8 @@ export class ChatService {
     usuario: any = null;
     size$: BehaviorSubject<string | null>;
 
-    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private fb: Facebook, private googlePlus: GooglePlus, private twitterConnect: TwitterConnect, private platform: Platform) {
+    //private fb: Facebook,
+    constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private googlePlus: GooglePlus, private platform: Platform, private twitterConnect: TwitterConnect, private fb: Facebook) {
 
         let usuarioGuardado = localStorage.getItem('usuario');
 
@@ -44,10 +46,7 @@ export class ChatService {
 
     login(proveedor: string) {
 
-
         if (this.platform.is('cordova')) {
-
-            let resultado;
 
             switch (proveedor) {
                 case 'twitter':
@@ -70,25 +69,15 @@ export class ChatService {
 
                 case 'facebook':
 
-                    resultado = this.fb.login(['email', 'public_profile']).then(respuesta => {
-
-                        console.log(respuesta);
-
+                    this.fb.login(['email', 'public_profile']).then(respuesta => {
                         this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
                             response => {
-
-                                console.log(response);
-
                                 this.usuario = {
                                     displayName: response.first_name,
                                     uid: respuesta.authResponse.userID
                                 };
                             });
-
-                        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(respuesta.authResponse.accessToken);
-                        return firebase.auth().signInWithCredential(facebookCredential);
                     });
-
                     break;
 
                 case 'google':
@@ -105,12 +94,8 @@ export class ChatService {
                         );
                     break;
             }
-
-            return resultado;
-
         }
         else {
-
             let provider;
 
             switch (proveedor) {
