@@ -24,44 +24,46 @@ import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {Facebook} from '@ionic-native/facebook';
 
 import {FCM} from '@ionic-native/fcm';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    ChatComponent,
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    FormsModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    ChatService,
-    AngularFireDatabase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GooglePlus,
-    TwitterConnect,
-    Facebook,
-    FCM
-  ]
+    declarations: [
+        MyApp,
+        AboutPage,
+        ContactPage,
+        HomePage,
+        TabsPage,
+        ChatComponent,
+        LoginComponent
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(MyApp),
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        AngularFireAuthModule,
+        FormsModule,
+        HttpModule
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        AboutPage,
+        ContactPage,
+        HomePage,
+        TabsPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        ChatService,
+        AngularFireDatabase,
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        GooglePlus,
+        TwitterConnect,
+        Facebook,
+        FCM
+    ]
 })
 export class AppModule {
 }
