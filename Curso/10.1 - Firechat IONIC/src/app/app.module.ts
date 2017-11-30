@@ -19,51 +19,49 @@ import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {ChatService} from './services/chat.service';
 
-// import {Facebook} from '@ionic-native/facebook';
 import {GooglePlus} from '@ionic-native/google-plus';
 import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {Facebook} from '@ionic-native/facebook';
-// providers
-// Facebook,
-//   GooglePlus,
-//   TwitterConnect
+
+import {FCM} from '@ionic-native/fcm';
 
 @NgModule({
-    declarations: [
-        MyApp,
-        AboutPage,
-        ContactPage,
-        HomePage,
-        TabsPage,
-        ChatComponent,
-        LoginComponent
-    ],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(MyApp),
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule,
-        AngularFireAuthModule,
-        FormsModule
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
-        AboutPage,
-        ContactPage,
-        HomePage,
-        TabsPage
-    ],
-    providers: [
-        StatusBar,
-        SplashScreen,
-        ChatService,
-        AngularFireDatabase,
-        {provide: ErrorHandler, useClass: IonicErrorHandler},
-        GooglePlus,
-        TwitterConnect,
-        Facebook
-    ]
+  declarations: [
+    MyApp,
+    AboutPage,
+    ContactPage,
+    HomePage,
+    TabsPage,
+    ChatComponent,
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    FormsModule
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    AboutPage,
+    ContactPage,
+    HomePage,
+    TabsPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    ChatService,
+    AngularFireDatabase,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GooglePlus,
+    TwitterConnect,
+    Facebook,
+    FCM
+  ]
 })
 export class AppModule {
 }
