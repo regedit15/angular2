@@ -9,4 +9,40 @@
 <ion-content padding>
     Esta app fue realizada por
     <strong>Martin Rossi</strong>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item>
+                <ion-label floating>UUID</ion-label>
+                <ion-input type="text"
+                           [(ngModel)]="uuid"></ion-input>
+            </ion-item>
+        </ion-card-header>
+
+        <ion-card-header>
+            <ion-item>
+                <ion-label floating>Mensaje</ion-label>
+                <ion-input type="text"
+                           [(ngModel)]="mensaje"></ion-input>
+            </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-item>
+                <ion-label floating>Titulo:</ion-label>
+                <ion-input type="text"
+                           (keyup.enter)="enviarMensaje()"
+                           [(ngModel)]="nombreItem"></ion-input>
+            </ion-item>
+            <br>
+            <br>
+            <button ion-button
+                    (click)="enviarMensaje()"
+                    class="button-block">Enviar
+            </button>
+
+        </ion-card-content>
+    </ion-card>
+
+
 </ion-content>

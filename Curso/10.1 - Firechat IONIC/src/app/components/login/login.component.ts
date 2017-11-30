@@ -24,16 +24,6 @@ export class LoginComponent implements OnInit {
         this.chatService.login(tipo);
     }
 
-    enviar() {
-
-        this.chatService.enviarMensaje().subscribe(data => {
-            console.log('Exito en el login:');
-            console.log(data);
-        }, err => {
-            console.log('Errorrrrrr:');
-            console.log(err)
-        });
-    }
 
     initializeApp() {
         this.platform.ready().then(() => {
@@ -47,6 +37,8 @@ export class LoginComponent implements OnInit {
                     //aquí se debe enviar el token al back-end para tenerlo registrado y de esta forma poder enviar
                     // mensajes a esta  aplicación o también copiar el token para usarlo con Postman :D
                     console.log('The token to use is: ', token);
+
+                    this.chatService.setToken(token);
                 })
                 .catch(error => {
                     //ocurrió un error al procesar el token

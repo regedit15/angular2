@@ -18,6 +18,7 @@ export class ChatService {
     chats: any;
     usuario: any = null;
     size$: BehaviorSubject<string | null>;
+    token: string;
 
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private googlePlus: GooglePlus, private platform: Platform, private twitterConnect: TwitterConnect, private fb: Facebook, private http: Http) {
 
@@ -127,17 +128,17 @@ export class ChatService {
         this.afAuth.auth.signOut();
     }
 
-    enviarMensaje() {
+    enviarMensaje(uuid, titulo, mensaje) {
         let headers = new Headers();
         headers.append('Authorization', 'key=AAAAfl5uRa0:APA91bFV4xa0P7wvoYK733a-luqI9QPbdBfbJ9CkEg2F_I7sYXZixEiCt7LxtCRLot38oSSSy5EOGIGkrJnVMFzkWIdZlYkd5E-k4pkQ2LRrGMNoFNYGxmQ5Oesj2OtmdyVkyrQU0dQM');
         headers.append('Content-Type', 'application/json');
 
         var body = JSON.stringify({
 
-            to: 'ctDCg-qsUjY:APA91bHwWJHjEG_AA86uMgRIHy4iWoNsWAe7s89Bfv_nLc8I9BixuDxZyA34-hzZCl2H8089mt4zDchOlaVtuKrgjekpTHrYHPd4y7zt7Ya3zMFXYUsKyHDNu4RW2ocW1g6pTD_yuWoN',
+            to: uuid,
             notification: {
-                title: 'Notification title',
-                body: 'Notification body',
+                title: titulo,
+                body: mensaje,
                 sound: 'default',
                 click_action: 'FCM_PLUGIN_ACTIVITY',
                 icon: 'fcm_push_icon'
@@ -153,5 +154,13 @@ export class ChatService {
         return this.http.post('https://fcm.googleapis.com/fcm/send', body, options).map(res => {
             return res.json();
         });
+    }
+
+    setToken(token: string) {
+        this.token = token;
+    }
+
+    getToken() {
+        return this.token;
     }
 }
