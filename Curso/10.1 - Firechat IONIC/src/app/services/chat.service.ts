@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireAction, AngularFireDatabase} from 'angularfire2/database';
 import {Mensaje} from '../interfaces/mensaje.interface';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -11,14 +11,23 @@ import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {Facebook} from '@ionic-native/facebook';
 import {Http, RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
+import {Usuario} from '../interfaces/usuario';
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
+import 'rxjs/add/operator/switchMap';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ChatService {
 
     chats: any;
-    usuario: any = null;
-    size$: BehaviorSubject<string | null>;
-    token: string;
+    usuario: Usuario = {};
+    // size$: BehaviorSubject<string | null>;
+    baseUrl = 'https://firechat-841dd.firebaseio.com/';
+    usuariosUrl = this.baseUrl + 'usuarios.json';
+    // heroeUrl = this.baseUrl + 'usuarios';
+    // token: string;
 
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private googlePlus: GooglePlus, private platform: Platform, private twitterConnect: TwitterConnect, private fb: Facebook, private http: Http) {
 
@@ -28,6 +37,10 @@ export class ChatService {
             this.usuario = JSON.parse(usuarioGuardado);
         }
     }
+
+
+    items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+    size$: BehaviorSubject<string | null>;
 
     cargarMensaje() {
         this.chats = this.angularFireDb.list('chats').valueChanges();
@@ -54,18 +67,10 @@ export class ChatService {
 
                     this.twitterConnect.login()
                         .then(res => {
-
-                            console.log(res);
-
-                            this.usuario = {
-                                displayName: res.userName,
-                                uid: res.userId
-                            };
+                            // console.log(res);
+                            this.procesarUsuario(res.userName, res.userId);
                         })
-                        .catch(
-                            err => console.error(err)
-                        );
-
+                        .catch(err => console.error(err));
                     break;
 
                 case 'facebook':
@@ -73,10 +78,8 @@ export class ChatService {
                     this.fb.login(['email', 'public_profile']).then(respuesta => {
                         this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
                             response => {
-                                this.usuario = {
-                                    displayName: response.first_name,
-                                    uid: respuesta.authResponse.userID
-                                };
+                                // console.log(res);
+                                this.procesarUsuario(response.first_name, respuesta.authResponse.userID);
                             });
                     });
                     break;
@@ -85,14 +88,9 @@ export class ChatService {
 
                     this.googlePlus.login({})
                         .then(res => {
-                            this.usuario = {
-                                displayName: res.displayName,
-                                uid: res.userId
-                            };
-                        })
-                        .catch(
-                            err => console.error(err)
-                        );
+                            // console.log(res);
+                            this.procesarUsuario(res.displayName, res.userId);
+                        }).catch(err => console.error(err));
                     break;
             }
         }
@@ -113,8 +111,8 @@ export class ChatService {
 
             this.afAuth.auth.signInWithPopup(provider)
                 .then(respuesta => {
-                    console.log(respuesta);
-                    this.usuario = respuesta.user;
+                    // console.log(res);
+                    this.procesarUsuario(respuesta.user.displayName, respuesta.user.uid);
 
                     // se guarda en el local storage
                     localStorage.setItem('usuario', JSON.stringify(this.usuario));
@@ -125,6 +123,7 @@ export class ChatService {
     logout() {
         localStorage.removeItem('usuario');
         this.usuario = null;
+        localStorage.setItem('usuario', null);
         this.afAuth.auth.signOut();
     }
 
@@ -134,7 +133,6 @@ export class ChatService {
         headers.append('Content-Type', 'application/json');
 
         var body = JSON.stringify({
-
             to: uuid,
             notification: {
                 title: titulo,
@@ -157,10 +155,53 @@ export class ChatService {
     }
 
     setToken(token: string) {
-        this.token = token;
+        this.usuario.token = token;
     }
 
     getToken() {
-        return this.token;
+        return this.usuario.token;
     }
+
+    getUsuarios() {
+        return this.angularFireDb.list('usuarios',
+            ref => ref.orderByChild('token').equalTo('dwCcTRoeJuc:APA91bHmnS3AeL66DbXY6ljhEoFW6THmwTS0Cm5W0S9QT0'));
+    }
+
+    procesarUsuario(displayName: string, uid: string) {
+        if (this.usuario == null) {
+            this.usuario = {};
+        }
+        this.usuario.displayName = displayName;
+        this.usuario.uid = uid;
+        this.usuario.token = localStorage.getItem('token');
+        this.registrarUsuarioSiEsNecesario();
+    }
+
+    registrarUsuarioSiEsNecesario() {
+
+        this.angularFireDb.list('usuarios', ref => ref.orderByChild('token').equalTo(this.usuario.token)).valueChanges().subscribe(usuarios => {
+
+            if (usuarios.length == 0) {
+                this.registrarUsuario(this.usuario).subscribe(data => {
+                    console.log('Usuario registrado en la bd!');
+                }, error => {
+                    console.error(error);
+                });
+            }
+        });
+    }
+
+    registrarUsuario(usuario: Usuario) {
+        let body = JSON.stringify(usuario);
+        let headers = new Headers({
+            'Constent-Type': 'application/json'
+        });
+
+        return this.http.post(this.usuariosUrl, body, {headers}).map(res => {
+                return res.json();
+            }
+        );
+    }
+
+
 }

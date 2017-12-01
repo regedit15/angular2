@@ -21,18 +21,18 @@
 
         <ion-card-header>
             <ion-item>
-                <ion-label floating>Mensaje</ion-label>
+                <ion-label floating>Titulo</ion-label>
                 <ion-input type="text"
-                           [(ngModel)]="mensaje"></ion-input>
+                           [(ngModel)]="titulo"></ion-input>
             </ion-item>
         </ion-card-header>
 
         <ion-card-content>
             <ion-item>
-                <ion-label floating>Titulo:</ion-label>
+                <ion-label floating>Mensaje:</ion-label>
                 <ion-input type="text"
                            (keyup.enter)="enviarMensaje()"
-                           [(ngModel)]="nombreItem"></ion-input>
+                           [(ngModel)]="mensaje"></ion-input>
             </ion-item>
             <br>
             <br>
