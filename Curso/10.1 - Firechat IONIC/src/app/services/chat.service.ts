@@ -162,11 +162,6 @@ export class ChatService {
         return this.usuario.token;
     }
 
-    getUsuarios() {
-        return this.angularFireDb.list('usuarios',
-            ref => ref.orderByChild('token').equalTo('dwCcTRoeJuc:APA91bHmnS3AeL66DbXY6ljhEoFW6THmwTS0Cm5W0S9QT0'));
-    }
-
     procesarUsuario(displayName: string, uid: string) {
         if (this.usuario == null) {
             this.usuario = {};
@@ -203,5 +198,7 @@ export class ChatService {
         );
     }
 
-
+    getUsuarios() {
+        return this.angularFireDb.list('usuarios', ref => ref.orderByChild('displayName')).valueChanges();
+    }
 }

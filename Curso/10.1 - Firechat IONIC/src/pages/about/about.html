@@ -1,39 +1,38 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            About
+            Enviar Mensaje
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    Esta app fue realizada por
-    <strong>Martin Rossi</strong>
+
 
     <ion-card>
-        <ion-card-header>
-            <ion-item>
-                <ion-label floating>UUID</ion-label>
-                <ion-input type="text"
-                           [(ngModel)]="uuid"></ion-input>
-            </ion-item>
-        </ion-card-header>
 
-        <ion-card-header>
+        <ion-card-content>
+            <button ion-button
+                    (click)="showRadio()"
+                    class="bontonCircular">
+                <ion-icon ios="ios-contact"
+                          md="md-contact"
+                          style="font-size: 24px;"></ion-icon>
+            </button>
+            {{para}}
             <ion-item>
                 <ion-label floating>Titulo</ion-label>
                 <ion-input type="text"
                            [(ngModel)]="titulo"></ion-input>
             </ion-item>
-        </ion-card-header>
 
-        <ion-card-content>
             <ion-item>
                 <ion-label floating>Mensaje:</ion-label>
                 <ion-input type="text"
                            (keyup.enter)="enviarMensaje()"
                            [(ngModel)]="mensaje"></ion-input>
             </ion-item>
+            <br>
             <br>
             <br>
             <button ion-button
