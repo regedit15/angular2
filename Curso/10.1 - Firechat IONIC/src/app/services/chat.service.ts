@@ -133,7 +133,7 @@ export class ChatService {
         headers.append('Content-Type', 'application/json');
 
         var body = JSON.stringify({
-            to: uuid,
+            to: '/mensajes',
             notification: {
                 title: titulo,
                 body: mensaje,
