@@ -51,7 +51,15 @@ export class ChatService {
             uid: this.usuario.uid
         };
 
-        return this.angularFireDb.list(URL_CHATS).push(mensaje)
+        this.enviarMensaje(TOPICS_MENSAJES, this.usuario.displayName, texto).subscribe(data => {
+            console.log('Mensaje push enviado con éxito');
+            // console.log(data);
+        }, err => {
+            console.log('Error al enviar mensaje push!:');
+            console.log(err)
+        });
+
+        return this.angularFireDb.list(URL_CHATS).push(mensaje);
     }
 
     setToken(token: string) {
