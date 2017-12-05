@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
+import {FCM} from '@ionic-native/fcm';
+import {TOPICS_MENSAJES} from '../../../environments/environment';
 
 @Component({
     selector: 'app-chat',
@@ -10,7 +12,7 @@ export class ChatComponent implements OnInit {
     mensaje = '';
     elemento: any;
 
-    constructor(public chatService: ChatService) {
+    constructor(public chatService: ChatService, private fcm: FCM) {
         this.chatService.cargarMensaje().subscribe(
             () => {
                 console.log('Mensajes cargados...');
@@ -20,6 +22,12 @@ export class ChatComponent implements OnInit {
                 }, 100);
             }
         );
+
+        let recibirNotificaciones = JSON.parse(localStorage.getItem('recibirNotificaciones'));
+
+        if (recibirNotificaciones == null || recibirNotificaciones) {
+            this.fcm.subscribeToTopic(TOPICS_MENSAJES);
+        }
     }
 
     ngOnInit() {

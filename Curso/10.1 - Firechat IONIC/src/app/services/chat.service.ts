@@ -12,38 +12,34 @@ import {Facebook} from '@ionic-native/facebook';
 import {Http, RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
 import {Usuario} from '../interfaces/usuario';
-import {Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
-import 'rxjs/add/operator/switchMap';
-import {Subject} from 'rxjs/Subject';
+import {
+    URL_CHATS, TOPICS_MENSAJES, URL_USUARIOS_JSON, CLAVE_DE_SERVIDOR,
+    URL_PUSH_NOTIFICATIONS, URL_USUARIOS
+} from '../../environments/environment';
 
 @Injectable()
 export class ChatService {
+    canalDeChat(arg0: any): any {
+        throw new Error('Method not implemented.');
+    }
 
+    readonly USUARIO = 'usuario';
     chats: any;
     usuario: Usuario = {};
-    // size$: BehaviorSubject<string | null>;
-    baseUrl = 'https://firechat-841dd.firebaseio.com/';
-    usuariosUrl = this.baseUrl + 'usuarios.json';
-    // heroeUrl = this.baseUrl + 'usuarios';
-    // token: string;
+
 
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private googlePlus: GooglePlus, private platform: Platform, private twitterConnect: TwitterConnect, private fb: Facebook, private http: Http) {
 
-        let usuarioGuardado = localStorage.getItem('usuario');
+        let usuarioGuardado = localStorage.getItem(this.USUARIO);
 
         if (usuarioGuardado) {
             this.usuario = JSON.parse(usuarioGuardado);
         }
     }
 
-
-    items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
-    size$: BehaviorSubject<string | null>;
-
     cargarMensaje() {
-        this.chats = this.angularFireDb.list('chats').valueChanges();
+        this.chats = this.angularFireDb.list(URL_CHATS).valueChanges();
         return this.chats;
     }
 
@@ -55,7 +51,15 @@ export class ChatService {
             uid: this.usuario.uid
         };
 
-        return this.angularFireDb.list('chats').push(mensaje)
+        return this.angularFireDb.list(URL_CHATS).push(mensaje)
+    }
+
+    setToken(token: string) {
+        this.usuario.token = token;
+    }
+
+    getToken() {
+        return this.usuario.token;
     }
 
     login(proveedor: string) {
@@ -93,6 +97,8 @@ export class ChatService {
                         }).catch(err => console.error(err));
                     break;
             }
+
+
         }
         else {
             let provider;
@@ -115,25 +121,26 @@ export class ChatService {
                     this.procesarUsuario(respuesta.user.displayName, respuesta.user.uid);
 
                     // se guarda en el local storage
-                    localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                    localStorage.setItem(this.USUARIO, JSON.stringify(this.usuario));
                 });
         }
     }
 
     logout() {
-        localStorage.removeItem('usuario');
+        localStorage.removeItem(this.USUARIO);
         this.usuario = null;
-        localStorage.setItem('usuario', null);
+        localStorage.setItem(this.USUARIO, null);
         this.afAuth.auth.signOut();
     }
 
-    enviarMensaje(uuid, titulo, mensaje) {
+    enviarMensaje(token, titulo, mensaje) {
         let headers = new Headers();
-        headers.append('Authorization', 'key=AAAAfl5uRa0:APA91bFV4xa0P7wvoYK733a-luqI9QPbdBfbJ9CkEg2F_I7sYXZixEiCt7LxtCRLot38oSSSy5EOGIGkrJnVMFzkWIdZlYkd5E-k4pkQ2LRrGMNoFNYGxmQ5Oesj2OtmdyVkyrQU0dQM');
+        headers.append('Authorization', 'key=' + CLAVE_DE_SERVIDOR);
         headers.append('Content-Type', 'application/json');
 
         var body = JSON.stringify({
-            to: '/mensajes',
+            // to: TOPICS_MENSAJES,
+            to: token,
             notification: {
                 title: titulo,
                 body: mensaje,
@@ -141,25 +148,17 @@ export class ChatService {
                 click_action: 'FCM_PLUGIN_ACTIVITY',
                 icon: 'fcm_push_icon'
             },
-            data: {
-                param1: 'value1',
-                param2: 'value2'
-            }
+            // data: {
+            //     param1: 'value1',
+            //     param2: 'value2'
+            // }
         });
 
         var options = new RequestOptions({headers: headers});
 
-        return this.http.post('https://fcm.googleapis.com/fcm/send', body, options).map(res => {
+        return this.http.post(URL_PUSH_NOTIFICATIONS, body, options).map(res => {
             return res.json();
         });
-    }
-
-    setToken(token: string) {
-        this.usuario.token = token;
-    }
-
-    getToken() {
-        return this.usuario.token;
     }
 
     procesarUsuario(displayName: string, uid: string) {
@@ -174,7 +173,7 @@ export class ChatService {
 
     registrarUsuarioSiEsNecesario() {
 
-        this.angularFireDb.list('usuarios', ref => ref.orderByChild('token').equalTo(this.usuario.token)).valueChanges().subscribe(usuarios => {
+        this.angularFireDb.list(URL_USUARIOS, ref => ref.orderByChild('token').equalTo(this.usuario.token)).valueChanges().subscribe(usuarios => {
 
             if (usuarios.length == 0) {
                 this.registrarUsuario(this.usuario).subscribe(data => {
@@ -192,13 +191,13 @@ export class ChatService {
             'Constent-Type': 'application/json'
         });
 
-        return this.http.post(this.usuariosUrl, body, {headers}).map(res => {
+        return this.http.post(URL_USUARIOS_JSON, body, {headers}).map(res => {
                 return res.json();
             }
         );
     }
 
     getUsuarios() {
-        return this.angularFireDb.list('usuarios', ref => ref.orderByChild('displayName')).valueChanges();
+        return this.angularFireDb.list(URL_USUARIOS, ref => ref.orderByChild('displayName')).valueChanges();
     }
 }

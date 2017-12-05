@@ -3,7 +3,6 @@ import {NavController} from 'ionic-angular';
 import {ChatService} from '../../app/services/chat.service';
 import {AlertController} from 'ionic-angular';
 import {Usuario} from '../../app/interfaces/usuario';
-import {FCM} from '@ionic-native/fcm';
 
 @Component({
     selector: 'page-about',
@@ -16,7 +15,7 @@ export class AboutPage {
     mensaje: string = '';
     para: string = '';
 
-    constructor(public navCtrl: NavController, public chatService: ChatService, public alertCtrl: AlertController, private fcm: FCM) {
+    constructor(public navCtrl: NavController, public chatService: ChatService, public alertCtrl: AlertController) {
         this.token = this.chatService.getToken();
     }
 
@@ -59,17 +58,5 @@ export class AboutPage {
             });
             alert.present();
         })
-    }
-
-    subscibirse() {
-        //FCMPlugin.subscribeToTopic( topic, successCallback(msg), errorCallback(err) );
-        //All devices are subscribed automatically to 'all' and 'ios' or 'android' topic respectively.
-        //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
-        this.fcm.subscribeToTopic('/topics/mensajes');
-    }
-
-    desubscibirse() {
-        //FCMPlugin.unsubscribeFromTopic( topic, successCallback(msg), errorCallback(err) );
-        this.fcm.unsubscribeFromTopic('/topics/mensajes');
     }
 }

@@ -25,12 +25,14 @@ import {Facebook} from '@ionic-native/facebook';
 
 import {FCM} from '@ionic-native/fcm';
 import {HttpModule} from '@angular/http';
+import {ConfigPage} from '../pages/config/config';
 
 @NgModule({
     declarations: [
         MyApp,
         AboutPage,
         ContactPage,
+        ConfigPage,
         HomePage,
         TabsPage,
         ChatComponent,
@@ -50,6 +52,7 @@ import {HttpModule} from '@angular/http';
         MyApp,
         AboutPage,
         ContactPage,
+        ConfigPage,
         HomePage,
         TabsPage
     ],

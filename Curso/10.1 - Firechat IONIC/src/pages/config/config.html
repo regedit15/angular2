@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Configuración
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>
+        </ion-list-header>
+
+        <ion-item
+            style="max-width: 276px; margin: auto;">
+            <ion-label>Recibir Notificaciones</ion-label>
+            <ion-toggle (ionChange)="recibirNotificacionesClick()"
+                        [(ngModel)]="recibirNotificaciones"></ion-toggle>
+        </ion-item>
+    </ion-list>
+</ion-content>
