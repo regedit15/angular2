@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAction, AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {Mensaje} from '../interfaces/mensaje.interface';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
 import {Platform} from 'ionic-angular';
 import {GooglePlus} from '@ionic-native/google-plus';
 import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {Facebook} from '@ionic-native/facebook';
-import {Http, RequestOptions} from '@angular/http';
-import {Headers} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import {Usuario} from '../interfaces/usuario';
-import {Observable} from 'rxjs/Observable';
 import {
-    URL_CHATS, TOPICS_MENSAJES, URL_USUARIOS_JSON, CLAVE_DE_SERVIDOR,
-    URL_PUSH_NOTIFICATIONS, URL_USUARIOS
+    CLAVE_DE_SERVIDOR,
+    TOPICS_MENSAJES,
+    URL_CHATS,
+    URL_PUSH_NOTIFICATIONS,
+    URL_USUARIOS,
+    URL_USUARIOS_JSON
 } from '../../environments/environment';
 
 @Injectable()

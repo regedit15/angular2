@@ -1,13 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
-import {Nav, NavController, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from '../pages/home/home';
-import {MensajePage} from '../pages/mensaje/mensaje';
-import {ConfigPage} from '../pages/config/config';
 import {ChatService} from './services/chat.service';
 import {LoginPage} from '../pages/login/login';
-import {ChatPage} from '../pages/chat/chat';
 
 @Component({
     templateUrl: 'app.html'

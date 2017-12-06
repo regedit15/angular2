@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import {ChatService} from '../../app/services/chat.service';
-import {AlertController} from 'ionic-angular';
 import {Usuario} from '../../app/interfaces/usuario';
 
 @Component({
