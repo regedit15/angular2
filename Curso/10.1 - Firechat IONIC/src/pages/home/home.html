@@ -1,10 +1,26 @@
 <ion-header>
     <ion-navbar>
-        <ion-title style="text-align: center">FireChat</ion-title>
+        <button ion-button
+                menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>FireChat</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <!--<h3>Ionic Menu Starter</h3>-->
+
+    <!--<p>-->
+    <!--If you get lost, the-->
+    <!--<a href="http://ionicframework.com/docs/v2">docs</a>-->
+    <!--will show you the way.-->
+    <!--</p>-->
+
+    <!--<button ion-button-->
+    <!--secondary-->
+    <!--menuToggle>Toggle Menu-->
+    <!--</button>-->
 
 
     <div class="container main-container">
@@ -20,7 +36,7 @@
             </div>
         </div>
 
-        <app-login *ngIf="!chatService.usuario"></app-login>
+        <!--<app-login *ngIf="!chatService.usuario"></app-login>-->
 
         <div *ngIf="chatService.usuario"
              class="chat-window">
@@ -34,5 +50,6 @@
             {{ chat | json }}
         </li>
     </ul>
-
 </ion-content>
+
+

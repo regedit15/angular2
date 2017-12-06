@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 import {ChatService} from '../../services/chat.service';
 import {FCM, NotificationData} from '@ionic-native/fcm';
-import {Platform} from 'ionic-angular';
+import {NavController, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {HomePage} from '../../../pages/home/home';
 
 
 @Component({
@@ -13,7 +14,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     styles: []
 })
 export class LoginComponent implements OnInit {
-    constructor(public chatService: ChatService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private fcm: FCM) {
+
+    constructor(public chatService: ChatService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private fcm: FCM, public navCtrl: NavController) {
         this.initializeApp();
     }
 
@@ -21,7 +23,12 @@ export class LoginComponent implements OnInit {
     }
 
     ingresar(tipo: string) {
-        this.chatService.login(tipo);
+
+        this.chatService.login(tipo).then(() => {
+            this.navCtrl.setRoot(HomePage);
+        }, () => {
+            console.error('Loguin fallido');
+        });
     }
 
 

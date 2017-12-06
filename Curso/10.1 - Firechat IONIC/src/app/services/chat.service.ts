@@ -72,66 +72,71 @@ export class ChatService {
 
     login(proveedor: string) {
 
-        if (this.platform.is('cordova')) {
+        let promesa = new Promise((resolve, reject) => {
 
-            switch (proveedor) {
-                case 'twitter':
+            if (this.platform.is('cordova')) {
 
-                    this.twitterConnect.login()
-                        .then(res => {
-                            // console.log(res);
-                            this.procesarUsuario(res.userName, res.userId);
-                        })
-                        .catch(err => console.error(err));
-                    break;
+                switch (proveedor) {
+                    case 'twitter':
 
-                case 'facebook':
-
-                    this.fb.login(['email', 'public_profile']).then(respuesta => {
-                        this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
-                            response => {
+                        this.twitterConnect.login()
+                            .then(res => {
                                 // console.log(res);
-                                this.procesarUsuario(response.first_name, respuesta.authResponse.userID);
-                            });
+                                this.procesarUsuario(res.userName, res.userId);
+                                resolve();
+                            }).catch(err => console.error(err));
+                        break;
+
+                    case 'facebook':
+
+                        this.fb.login(['email', 'public_profile']).then(respuesta => {
+                            this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
+                                response => {
+                                    // console.log(res);
+                                    this.procesarUsuario(response.first_name, respuesta.authResponse.userID);
+                                    resolve();
+                                });
+                        });
+                        break;
+
+                    case 'google':
+
+                        this.googlePlus.login({})
+                            .then(res => {
+                                // console.log(res);
+                                this.procesarUsuario(res.displayName, res.userId);
+                                resolve();
+                            }).catch(err => console.error(err));
+                        break;
+                }
+            } else {
+                let provider;
+
+                switch (proveedor) {
+                    case 'google':
+                        provider = new firebase.auth.GoogleAuthProvider();
+                        break;
+                    case 'facebook':
+                        provider = new firebase.auth.FacebookAuthProvider();
+                        break;
+                    case 'twitter':
+                        provider = new firebase.auth.TwitterAuthProvider();
+                        break;
+                }
+
+                this.afAuth.auth.signInWithPopup(provider)
+                    .then(respuesta => {
+                        // console.log(res);
+                        this.procesarUsuario(respuesta.user.displayName, respuesta.user.uid);
+
+                        // se guarda en el local storage
+                        localStorage.setItem(this.USUARIO, JSON.stringify(this.usuario));
+                        resolve();
                     });
-                    break;
-
-                case 'google':
-
-                    this.googlePlus.login({})
-                        .then(res => {
-                            // console.log(res);
-                            this.procesarUsuario(res.displayName, res.userId);
-                        }).catch(err => console.error(err));
-                    break;
             }
+        });
 
-
-        }
-        else {
-            let provider;
-
-            switch (proveedor) {
-                case 'google':
-                    provider = new firebase.auth.GoogleAuthProvider();
-                    break;
-                case 'facebook':
-                    provider = new firebase.auth.FacebookAuthProvider();
-                    break;
-                case 'twitter':
-                    provider = new firebase.auth.TwitterAuthProvider();
-                    break;
-            }
-
-            this.afAuth.auth.signInWithPopup(provider)
-                .then(respuesta => {
-                    // console.log(res);
-                    this.procesarUsuario(respuesta.user.displayName, respuesta.user.uid);
-
-                    // se guarda en el local storage
-                    localStorage.setItem(this.USUARIO, JSON.stringify(this.usuario));
-                });
-        }
+        return promesa;
     }
 
     logout() {

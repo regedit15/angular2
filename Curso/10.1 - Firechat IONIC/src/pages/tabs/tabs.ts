@@ -10,10 +10,10 @@ import {ConfigPage} from '../config/config';
 })
 export class TabsPage {
 
-    tab1Root = HomePage;
-    tab2Root = AboutPage;
-    tab3Root = ContactPage;
-    tab4Root = ConfigPage;
+    // tab1Root = HomePage;
+    // tab2Root = AboutPage;
+    // tab3Root = ContactPage;
+    // tab4Root = ConfigPage;
 
     constructor() {
 
