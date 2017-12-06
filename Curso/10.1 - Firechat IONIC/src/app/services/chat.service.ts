@@ -142,7 +142,6 @@ export class ChatService {
     logout() {
         localStorage.removeItem(this.USUARIO);
         this.usuario = null;
-        localStorage.setItem(this.USUARIO, null);
         this.afAuth.auth.signOut();
     }
 
@@ -212,5 +211,9 @@ export class ChatService {
 
     getUsuarios() {
         return this.angularFireDb.list(URL_USUARIOS, ref => ref.orderByChild('displayName')).valueChanges();
+    }
+
+    usuarioLogeado() {
+        return this.usuario != null;
     }
 }

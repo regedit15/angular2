@@ -1,28 +1,41 @@
-<h5>Logeate con:</h5>
+<ion-header>
+    <ion-navbar>
+        <button ion-button
+                menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Login</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <button ion-button
+            outline
+            color="danger"
+            class="bontonesLogin"
+            (click)="ingresar('google')">
+        <ion-icon name="logo-googleplus"></ion-icon>
+        &nbsp;&nbsp;Google
+    </button>
+
+    <button ion-button
+            outline
+            class="bontonesLogin"
+            (click)="ingresar('twitter')">
+        <ion-icon name="logo-twitter"></ion-icon>
+        &nbsp;&nbsp;Twitter
+    </button>
+    <button ion-button
+            outline
+            color="dark"
+            class="bontonesLogin"
+            (click)="ingresar('facebook')">
+        <ion-icon name="logo-facebook"></ion-icon>
+        &nbsp;&nbsp;Facebook
+    </button>
+
+</ion-content>
 
 
-<button ion-button
-        outline
-        color="danger"
-        class="bontonesLogin"
-        (click)="ingresar('google')">
-    <ion-icon name="logo-googleplus"></ion-icon>
-    &nbsp;&nbsp;Google
-</button>
-
-<button ion-button
-        outline
-        class="bontonesLogin"
-        (click)="ingresar('twitter')">
-    <ion-icon name="logo-twitter"></ion-icon>
-    &nbsp;&nbsp;Twitter
-</button>
-<button ion-button
-        outline
-        color="dark"
-        class="bontonesLogin"
-        (click)="ingresar('facebook')">
-    <ion-icon name="logo-facebook"></ion-icon>
-    &nbsp;&nbsp;Facebook
-</button>
 

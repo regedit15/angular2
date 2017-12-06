@@ -7,19 +7,22 @@ import {MensajePage} from '../pages/mensaje/mensaje';
 import {ConfigPage} from '../pages/config/config';
 import {ChatService} from './services/chat.service';
 import {LoginPage} from '../pages/login/login';
+import {ChatPage} from '../pages/chat/chat';
 
 @Component({
     templateUrl: 'app.html'
 })
 export class MyApp {
-    // @ViewChild(Nav) nav: Nav;
-    // @ViewChild('content') nav: NavController;
 
-    // rootPage: any = HomePage;
     rootPage: any = LoginPage;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public chatService: ChatService) {
         this.initializeApp();
+
+        if (chatService.usuarioLogeado()) {
+            this.rootPage = HomePage;
+        }
+
     }
 
     initializeApp() {

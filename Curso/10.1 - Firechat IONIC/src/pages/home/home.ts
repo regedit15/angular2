@@ -7,6 +7,7 @@ import {ConfigPage} from '../config/config';
 import {ChatPage} from '../chat/chat';
 import {LoginPage} from '../login/login';
 import {InfoPage} from '../info/info';
+import {ChatService} from '../../app/services/chat.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class HomePage {
     rootPage: any = ChatPage;
     pages: Array<{ title: string, component: any }>;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public chatService: ChatService) {
 
         this.pages = [
             {title: 'Chat', component: ChatPage},
@@ -33,6 +34,7 @@ export class HomePage {
     }
 
     salir() {
+        this.chatService.logout();
         this.nav.setRoot(LoginPage);
     }
 }
