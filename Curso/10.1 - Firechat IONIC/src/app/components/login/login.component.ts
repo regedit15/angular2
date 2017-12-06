@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
 
     ingresar(tipo: string) {
 
-        this.chatService.login(tipo).then(() => {
-            this.navCtrl.setRoot(HomePage);
-        }, () => {
-            console.error('Loguin fallido');
-        });
+        // this.chatService.login(tipo).then(() => {
+        this.navCtrl.setRoot(HomePage);
+        // }, () => {
+        //     console.error('Loguin fallido');
+        // });
     }
 
 

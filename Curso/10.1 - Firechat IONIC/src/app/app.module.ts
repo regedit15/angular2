@@ -52,7 +52,8 @@ import {ConfigPage} from '../pages/config/config';
         ContactPage,
         ConfigPage,
         HomePage,
-        LoginComponent
+        LoginComponent,
+        ChatComponent
     ],
     providers: [
         StatusBar,

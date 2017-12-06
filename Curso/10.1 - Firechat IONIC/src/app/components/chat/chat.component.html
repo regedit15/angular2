@@ -1,44 +1,59 @@
-<ion-card id="app-mensajes"
-          style="max-width: 400px; margin-left: auto; margin-right: auto; max-height: 400px; overflow: scroll;">
+<ion-header>
+    <ion-navbar>
+        <button ion-button
+                menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Chat</ion-title>
+    </ion-navbar>
+</ion-header>
 
-    <ion-card-content *ngFor="let chat of chatService.chats | async"
-                      [ngClass]="{'textoDerecha' : chatService.usuario.uid === chat.uid}">
+<ion-content padding>
 
-        <ion-badge item-end
-                   [ngClass]="{'colorDestinatario' : chatService.usuario.uid !== chat.uid}">{{chat.nombre}}
-        </ion-badge>
-        <p> {{chat.mensaje}}</p>
 
-    </ion-card-content>
+    <ion-card id="app-mensajes"
+              style="max-width: 400px; margin-left: auto; margin-right: auto; max-height: 400px; overflow: scroll;">
 
-</ion-card>
+        <ion-card-content *ngFor="let chat of chatService.chats | async"
+                          [ngClass]="{'textoDerecha' : chatService.usuario.uid === chat.uid}">
 
-<br>
+            <ion-badge item-end
+                       [ngClass]="{'colorDestinatario' : chatService.usuario.uid !== chat.uid}">{{chat.nombre}}
+            </ion-badge>
+            <p> {{chat.mensaje}}</p>
 
-<table style="margin: auto; width: 100%; max-width: 400px;">
-    <tr>
-        <td>
-            <ion-item>
-                <ion-input type="text"
-                           value=""
-                           [(ngModel)]="mensaje"
-                           placeholder="Escribir mensaje"
-                           (keyup.enter)="enviar()"></ion-input>
-            </ion-item>
-        </td>
-        <td>
-            <button
-                (click)="enviar()"
-                ion-button
-                class="bontonWpp"
-                round>
-                <ion-icon name="md-send"></ion-icon>
-            </button>
-        </td>
-    </tr>
-</table>
+        </ion-card-content>
 
-<div id="app-mensajes"
-     class="app-mensajes">
+    </ion-card>
 
-</div>
+    <br>
+
+    <table style="margin: auto; width: 100%; max-width: 400px;">
+        <tr>
+            <td>
+                <ion-item>
+                    <ion-input type="text"
+                               value=""
+                               [(ngModel)]="mensaje"
+                               placeholder="Escribir mensaje"
+                               (keyup.enter)="enviar()"></ion-input>
+                </ion-item>
+            </td>
+            <td>
+                <button
+                    (click)="enviar()"
+                    ion-button
+                    class="bontonWpp"
+                    round>
+                    <ion-icon name="md-send"></ion-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <div id="app-mensajes"
+         class="app-mensajes">
+
+    </div>
+
+</ion-content>
