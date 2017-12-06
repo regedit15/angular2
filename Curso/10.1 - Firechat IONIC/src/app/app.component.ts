@@ -3,9 +3,8 @@ import {Nav, NavController, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from '../pages/home/home';
-import {AboutPage} from '../pages/about/about';
+import {MensajePage} from '../pages/mensaje/mensaje';
 import {ConfigPage} from '../pages/config/config';
-import {ContactPage} from '../pages/contact/contact';
 import {ChatService} from './services/chat.service';
 import {LoginPage} from '../pages/login/login';
 
@@ -14,7 +13,7 @@ import {LoginPage} from '../pages/login/login';
 })
 export class MyApp {
     // @ViewChild(Nav) nav: Nav;
-    @ViewChild('content') nav: NavController;
+    // @ViewChild('content') nav: NavController;
 
     // rootPage: any = HomePage;
     rootPage: any = LoginPage;

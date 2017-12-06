@@ -2,11 +2,11 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {AboutPage} from '../about/about';
+import {MensajePage} from '../mensaje/mensaje';
 import {ConfigPage} from '../config/config';
-import {ContactPage} from '../contact/contact';
 import {ChatPage} from '../chat/chat';
 import {LoginPage} from '../login/login';
+import {InfoPage} from '../info/info';
 
 
 @Component({
@@ -14,6 +14,7 @@ import {LoginPage} from '../login/login';
     templateUrl: 'home.html'
 })
 export class HomePage {
+
     @ViewChild(Nav) nav: Nav;
     rootPage: any = ChatPage;
     pages: Array<{ title: string, component: any }>;
@@ -22,9 +23,9 @@ export class HomePage {
 
         this.pages = [
             {title: 'Chat', component: ChatPage},
-            {title: 'Mensajes', component: AboutPage},
+            {title: 'Mensajes', component: MensajePage},
             {title: 'Configuracion', component: ConfigPage},
-            {title: 'Info', component: ContactPage}];
+            {title: 'Info', component: InfoPage}];
     }
 
     openPage(page) {

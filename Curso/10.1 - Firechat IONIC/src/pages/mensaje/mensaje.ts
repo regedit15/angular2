@@ -6,9 +6,9 @@ import {Usuario} from '../../app/interfaces/usuario';
 
 @Component({
     selector: 'page-about',
-    templateUrl: 'about.html'
+    templateUrl: 'mensaje.html'
 })
-export class AboutPage {
+export class MensajePage {
 
     token: string = '';
     titulo: string = '';
