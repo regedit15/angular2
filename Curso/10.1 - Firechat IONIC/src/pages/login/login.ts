@@ -1,25 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
-import {ChatService} from '../../services/chat.service';
 import {FCM, NotificationData} from '@ionic-native/fcm';
 import {NavController, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {HomePage} from '../../../pages/home/home';
+import {ChatService} from '../../app/services/chat.service';
+import {HomePage} from '../home/home';
 
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
+    selector: 'page-login',
+    templateUrl: './login.html',
     styles: []
 })
-export class LoginComponent implements OnInit {
+export class LoginPage {
 
     constructor(public chatService: ChatService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private fcm: FCM, public navCtrl: NavController) {
         this.initializeApp();
-    }
-
-    ngOnInit() {
     }
 
     ingresar(tipo: string) {

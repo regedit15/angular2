@@ -9,8 +9,6 @@ import {HomePage} from '../pages/home/home';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {ChatComponent} from './components/chat/chat.component';
-import {LoginComponent} from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabase, AngularFireDatabaseModule} from 'angularfire2/database';
@@ -25,6 +23,8 @@ import {Facebook} from '@ionic-native/facebook';
 import {FCM} from '@ionic-native/fcm';
 import {HttpModule} from '@angular/http';
 import {ConfigPage} from '../pages/config/config';
+import {LoginPage} from '../pages/login/login';
+import {ChatPage} from '../pages/chat/chat';
 
 @NgModule({
     declarations: [
@@ -33,8 +33,8 @@ import {ConfigPage} from '../pages/config/config';
         ContactPage,
         ConfigPage,
         HomePage,
-        ChatComponent,
-        LoginComponent
+        ChatPage,
+        LoginPage
     ],
     imports: [
         BrowserModule,
@@ -52,8 +52,8 @@ import {ConfigPage} from '../pages/config/config';
         ContactPage,
         ConfigPage,
         HomePage,
-        LoginComponent,
-        ChatComponent
+        LoginPage,
+        ChatPage
     ],
     providers: [
         StatusBar,

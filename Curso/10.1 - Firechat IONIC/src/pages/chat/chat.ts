@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ChatService} from '../../services/chat.service';
 import {FCM} from '@ionic-native/fcm';
-import {TOPICS_MENSAJES} from '../../../environments/environment';
+import {TOPICS_MENSAJES} from '../../environments/environment';
+import {ChatService} from '../../app/services/chat.service';
 
 @Component({
     selector: 'app-chat',
-    templateUrl: './chat.component.html',
+    templateUrl: './chat.html',
 })
-export class ChatComponent implements OnInit {
+export class ChatPage implements OnInit {
 
     mensaje = '';
     elemento: any;
