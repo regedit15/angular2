@@ -23,7 +23,7 @@ export class HomePage {
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public chatService: ChatService) {
 
         this.pages = [
-            {title: 'Chat', component: ChatPage},
+            {title: 'FireChat', component: ChatPage},
             {title: 'Mensajes', component: MensajePage},
             {title: 'Configuracion', component: ConfigPage},
             {title: 'Info', component: InfoPage}];

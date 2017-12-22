@@ -29,7 +29,6 @@ export class ChatService {
     chats: any;
     usuario: Usuario = {};
 
-
     constructor(private angularFireDb: AngularFireDatabase, public afAuth: AngularFireAuth, private googlePlus: GooglePlus, private platform: Platform, private twitterConnect: TwitterConnect, private fb: Facebook, private http: Http) {
 
         let usuarioGuardado = localStorage.getItem(this.USUARIO);
@@ -49,7 +48,8 @@ export class ChatService {
         let mensaje: Mensaje = {
             nombre: this.usuario.displayName,
             mensaje: texto,
-            uid: this.usuario.uid
+            uid: this.usuario.uid,
+            fecha: new Date().toString(),
         };
 
         this.enviarMensaje(TOPICS_MENSAJES, this.usuario.displayName, texto).subscribe(data => {

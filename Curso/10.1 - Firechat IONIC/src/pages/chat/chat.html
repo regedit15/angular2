@@ -4,21 +4,42 @@
                 menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Chat</ion-title>
+        <ion-title>
+            <table>
+                <tr>
+                    <td>FireChat</td>
+                    <!--<td style="width: 100%">-->
+                    <!--<img src="{{imagenNavidad}}"-->
+                    <!--alt=""-->
+                    <!--style="display: -webkit-box;margin-left: auto">-->
+                    <!--</td>-->
+                </tr>
+            </table>
+
+
+        </ion-title>
+
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
+    <img src="assets/imgs/navidad.gif"
+         alt=""
+         style="position: fixed; right: 1px;margin-top: -5px;">
+
 
     <ion-card id="app-mensajes"
-              style="max-width: 400px; margin-left: auto; margin-right: auto; max-height: 400px; overflow: scroll;">
+              style="max-width: 420px; margin-left: auto; margin-right: auto; overflow: scroll;"
+              [style.max-height.px]="largo">
 
         <ion-card-content *ngFor="let chat of chatService.chats | async"
                           [ngClass]="{'textoDerecha' : chatService.usuario?.uid === chat.uid}">
 
             <ion-badge item-end
-                       [ngClass]="{'colorDestinatario' : chatService.usuario?.uid !== chat.uid}">{{chat.nombre}}
+                       [ngClass]="{'colorDestinatario' : chatService.usuario?.uid !== chat.uid}">
+                <div> {{chat.nombre}}</div>
+                <div style="font-size: 8px;color: #e6e6e6;">{{chat.fecha | date:'MM/dd/yyyy hh:mm'}}</div>
             </ion-badge>
             <p> {{chat.mensaje}}</p>
 
@@ -35,7 +56,7 @@
                     <ion-input type="text"
                                value=""
                                [(ngModel)]="mensaje"
-                               placeholder="Escribir mensaje"
+                               placeholder="Escribe un mensaje"
                                (keyup.enter)="enviar()"></ion-input>
                 </ion-item>
             </td>
