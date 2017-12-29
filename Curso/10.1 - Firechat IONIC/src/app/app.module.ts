@@ -25,6 +25,7 @@ import {HttpModule} from '@angular/http';
 import {ConfigPage} from '../pages/config/config';
 import {LoginPage} from '../pages/login/login';
 import {ChatPage} from '../pages/chat/chat';
+import {Camera} from '@ionic-native/camera';
 
 @NgModule({
     declarations: [
@@ -64,7 +65,8 @@ import {ChatPage} from '../pages/chat/chat';
         GooglePlus,
         TwitterConnect,
         Facebook,
-        FCM
+        FCM,
+        Camera
     ]
 })
 export class AppModule {

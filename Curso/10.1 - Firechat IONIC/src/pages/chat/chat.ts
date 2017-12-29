@@ -2,7 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FCM} from '@ionic-native/fcm';
 import {TOPICS_MENSAJES} from '../../environments/environment';
 import {ChatService} from '../../app/services/chat.service';
-import {Platform} from 'ionic-angular';
+import {Camera, CameraOptions} from '@ionic-native/camera';
+import * as firebase from 'firebase';
+
+declare var window;
+
 
 @Component({
     selector: 'app-chat',
@@ -12,9 +16,13 @@ export class ChatPage implements OnInit {
 
     mensaje = '';
     elemento: any;
-    largo;
+    largo
+    myPicRef;
+    urlImagen;
 
-    constructor(public chatService: ChatService, private fcm: FCM, private platform: Platform) {
+    public Fbref: any;
+
+    constructor(public chatService: ChatService, private fcm: FCM, private camera: Camera) {
         this.chatService.cargarMensaje().subscribe(
             () => {
                 console.log('Mensajes cargados...');
@@ -33,6 +41,12 @@ export class ChatPage implements OnInit {
 
         // this.ancho = window.innerWidth - 50;
         this.largo = window.innerHeight - 175;
+
+        this.Fbref = firebase.storage().ref();
+
+        // BE2.jpg
+        // myPicRef
+        firebase.storage().ref('/');
     }
 
     ngOnInit() {
@@ -53,6 +67,39 @@ export class ChatPage implements OnInit {
         });
 
         this.mensaje = '';
+    }
+
+    getMedia() {
+
+        let opciones = {
+            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+            mediaType: this.camera.MediaType.ALLMEDIA,
+            destinationType: this.camera.DestinationType.FILE_URI
+        };
+
+        this.camera.getPicture(opciones).then(fileUri => {
+
+            let nombre = fileUri.split('/').pop();
+
+            window.resolveLocalFileSystemURL('file://' + fileUri, FE => {
+
+                FE.file(file => {
+                    const FR = new FileReader();
+                    FR.onloadend = (res: any) => {
+                        let AF = res.target.result;
+                        let blob = new Blob([new Uint8Array(AF)], {type: 'image/png'});
+                        this.upload(blob, nombre);
+                    };
+                    FR.readAsArrayBuffer(file);
+                })
+            });
+        });
+    }
+
+    upload(blob: Blob, nombreArchivo) {
+        this.Fbref.child(nombreArchivo).put(blob).then(imagenGuardada => {
+            this.urlImagen = imagenGuardada.downloadURL;
+        });
     }
 
 }
