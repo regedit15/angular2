@@ -1,6 +1,7 @@
 export interface Mensaje {
-    nombre: string;
+    usuario: string;
     mensaje: string;
-    uid?: string;
     fecha: string;
+    uid?: string;
+    urlImagen?: string;
 }

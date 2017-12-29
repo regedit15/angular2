@@ -56,7 +56,9 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-fcm": {},
-      "cordova-plugin-googleplus": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.542750164397-71hbsoigglkrf8iq31kq02l7uvie0ujv"
+      },
       "ionic-plugin-keyboard": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},

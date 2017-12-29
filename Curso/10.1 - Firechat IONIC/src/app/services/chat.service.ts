@@ -46,13 +46,36 @@ export class ChatService {
     agregarMensaje(texto: string) {
 
         let mensaje: Mensaje = {
-            nombre: this.usuario.displayName,
+            usuario: this.usuario.displayName,
             mensaje: texto,
             uid: this.usuario.uid,
             fecha: new Date().toString(),
         };
 
         this.enviarMensaje(TOPICS_MENSAJES, this.usuario.displayName, texto).subscribe(data => {
+            console.log('Mensaje push enviado con éxito');
+            // console.log(data);
+        }, err => {
+            console.log('Error al enviar mensaje push!:');
+            console.log(err)
+        });
+
+        return this.angularFireDb.list(URL_CHATS).push(mensaje);
+    }
+
+    agregarImagen(urlImagen) {
+
+        let imagen = 'imagen';
+
+        let mensaje: Mensaje = {
+            usuario: this.usuario.displayName,
+            mensaje: imagen,
+            urlImagen: urlImagen,
+            uid: this.usuario.uid,
+            fecha: new Date().toString(),
+        };
+
+        this.enviarMensaje(TOPICS_MENSAJES, this.usuario.displayName, imagen).subscribe(data => {
             console.log('Mensaje push enviado con éxito');
             // console.log(data);
         }, err => {

@@ -18,7 +18,6 @@ export class ChatPage implements OnInit {
     elemento: any;
     largo
     myPicRef;
-    urlImagen;
 
     public Fbref: any;
 
@@ -98,7 +97,15 @@ export class ChatPage implements OnInit {
 
     upload(blob: Blob, nombreArchivo) {
         this.Fbref.child(nombreArchivo).put(blob).then(imagenGuardada => {
-            this.urlImagen = imagenGuardada.downloadURL;
+
+            let urlImagen = imagenGuardada.downloadURL;
+
+            this.chatService.agregarImagen(urlImagen).then(() => {
+                console.log('Hecho!');
+            }, (error) => {
+                console.error('Error!: ' + error);
+            });
+
         });
     }
 

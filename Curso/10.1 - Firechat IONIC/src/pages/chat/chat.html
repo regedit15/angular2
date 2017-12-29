@@ -8,17 +8,9 @@
             <table>
                 <tr>
                     <td>FireChat</td>
-                    <!--<td style="width: 100%">-->
-                    <!--<img src="{{imagenNavidad}}"-->
-                    <!--alt=""-->
-                    <!--style="display: -webkit-box;margin-left: auto">-->
-                    <!--</td>-->
                 </tr>
             </table>
-
-
         </ion-title>
-
     </ion-navbar>
 </ion-header>
 
@@ -42,6 +34,10 @@
                 <div style="font-size: 8px;color: #e6e6e6;">{{chat.fecha | date:'MM/dd/yyyy hh:mm'}}</div>
             </ion-badge>
             <p> {{chat.mensaje}}</p>
+
+            <img *ngIf="chat.urlImagen"
+                 src="{{chat.urlImagen}}"
+                 alt="imagen">
 
         </ion-card-content>
 
@@ -85,7 +81,5 @@
         <ion-icon name="ios-image"></ion-icon>
     </button>
 
-    <img src="{{urlImagen}}"
-         alt="">
 
 </ion-content>
