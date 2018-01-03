@@ -9,7 +9,6 @@ import {GooglePlus} from '@ionic-native/google-plus';
 import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {Facebook} from '@ionic-native/facebook';
 import {Headers, Http, RequestOptions} from '@angular/http';
-import {Usuario} from '../interfaces/usuario';
 import {
     CLAVE_DE_SERVIDOR,
     TOPICS_MENSAJES,
@@ -18,6 +17,7 @@ import {
     URL_USUARIOS,
     URL_USUARIOS_JSON
 } from '../../environments/environment';
+import { Usuario } from "../interfaces/usuario.interface";
 
 @Injectable()
 export class ChatService {

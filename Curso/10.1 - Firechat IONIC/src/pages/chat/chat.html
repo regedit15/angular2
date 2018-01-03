@@ -1,7 +1,8 @@
 <ion-header>
     <ion-navbar>
-        <button ion-button
-                menuToggle>
+        <button
+            ion-button
+            menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>
@@ -15,45 +16,42 @@
 </ion-header>
 
 <ion-content padding>
-
-    <img src="assets/imgs/navidad.gif"
-         alt=""
-         style="position: fixed; right: 1px;margin-top: -5px;">
-
-
-    <ion-card id="app-mensajes"
-              style="max-width: 420px; margin-left: auto; margin-right: auto; overflow: scroll;"
-              [style.max-height.px]="largo">
-
-        <ion-card-content *ngFor="let chat of chatService.chats | async"
-                          [ngClass]="{'textoDerecha' : chatService.usuario?.uid === chat.uid}">
-
-            <ion-badge item-end
-                       [ngClass]="{'colorDestinatario' : chatService.usuario?.uid !== chat.uid}">
-                <div> {{chat.nombre}}</div>
-                <div style="font-size: 8px;color: #e6e6e6;">{{chat.fecha | date:'MM/dd/yyyy hh:mm'}}</div>
+    <img
+        src="assets/imgs/navidad.gif"
+        alt=""
+        style="position: fixed; right: 1px; margin-top: -5px;">
+    <ion-card
+        id="app-mensajes"
+        style="max-width: 420px; margin-left: auto; margin-right: auto; overflow: scroll;"
+        [style.max-height.px]="largo">
+        <ion-card-content
+            *ngFor="let chat of chatService.chats | async"
+            [ngClass]="{'textoDerecha' : chatService.usuario?.uid === chat.uid}">
+            <ion-badge
+                item-end
+                [ngClass]="{'colorDestinatario' : chatService.usuario?.uid !== chat.uid}">
+                <div>{{chat.usuario}}</div>
+                <div style="font-size: 8px; color: #e6e6e6;">{{chat.fecha | date:'MM/dd/yyyy hh:mm'}}</div>
             </ion-badge>
-            <p> {{chat.mensaje}}</p>
-
-            <img *ngIf="chat.urlImagen"
-                 src="{{chat.urlImagen}}"
-                 alt="imagen">
-
+            <p>{{chat.mensaje}}</p>
+            <img
+                *ngIf="chat.urlImagen"
+                src="{{chat.urlImagen}}"
+                alt="imagen">
         </ion-card-content>
-
     </ion-card>
-
     <br>
 
     <table style="margin: auto; width: 100%; max-width: 400px;">
         <tr>
             <td>
                 <ion-item>
-                    <ion-input type="text"
-                               value=""
-                               [(ngModel)]="mensaje"
-                               placeholder="Escribe un mensaje"
-                               (keyup.enter)="enviar()"></ion-input>
+                    <ion-input
+                        type="text"
+                        value=""
+                        [(ngModel)]="mensaje"
+                        placeholder="Escribe un mensaje"
+                        (keyup.enter)="enviar()"></ion-input>
                 </ion-item>
             </td>
             <td>
@@ -64,22 +62,20 @@
                     round>
                     <ion-icon name="md-send"></ion-icon>
                 </button>
+
+                <button
+                    (click)="getMedia()"
+                    ion-button
+                    class="bontonImagen"
+                    round>
+                    <ion-icon name="md-image"></ion-icon>
+                </button>
             </td>
         </tr>
     </table>
 
-    <div id="app-mensajes"
-         class="app-mensajes">
-    </div>
-
-
-    <button
-        (click)="getMedia()"
-        ion-button
-        class="bontonWpp"
-        round>
-        <ion-icon name="ios-image"></ion-icon>
-    </button>
-
+    <div
+        id="app-mensajes"
+        class="app-mensajes"></div>
 
 </ion-content>

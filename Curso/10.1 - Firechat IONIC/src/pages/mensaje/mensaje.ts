@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import {ChatService} from '../../app/services/chat.service';
-import {Usuario} from '../../app/interfaces/usuario';
+import {Usuario} from '../../app/interfaces/usuario.interface';
 
 @Component({
     selector: 'page-about',
