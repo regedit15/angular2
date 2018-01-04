@@ -29,7 +29,6 @@
     height: 0px;
 }
 
-
 .bontonImagen {
     background-color: #03a9f4;
     border-radius: 50%;
@@ -56,4 +55,16 @@
 
 button.bontonWpp.button.button-md.button-default.button-default-md.button-round.button-round-md {
     background-color: #53b971;
+}
+
+#mensaje::first-letter {
+    text-transform: uppercase;
+}
+
+#mensaje input.text-input.text-input-md {
+    display: -webkit-box;
+}
+
+.item-inner {
+    padding-right: 0px !important;
 }

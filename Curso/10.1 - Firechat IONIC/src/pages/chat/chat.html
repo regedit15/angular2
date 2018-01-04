@@ -16,14 +16,17 @@
 </ion-header>
 
 <ion-content padding>
+
     <img
         src="assets/imgs/navidad.gif"
         alt=""
         style="position: fixed; right: 1px; margin-top: -5px;">
+
     <ion-card
         id="app-mensajes"
         style="max-width: 420px; margin-left: auto; margin-right: auto; overflow: scroll;"
         [style.max-height.px]="largo">
+
         <ion-card-content
             *ngFor="let chat of chatService.chats | async"
             [ngClass]="{'textoDerecha' : chatService.usuario?.uid === chat.uid}">
@@ -42,11 +45,12 @@
     </ion-card>
     <br>
 
-    <table style="margin: auto; width: 100%; max-width: 400px;">
+    <table style="margin: auto; width: 100%; max-width: 420px;">
         <tr>
-            <td>
-                <ion-item>
+            <td style="width: 100%;padding-right: 10px;">
+                <ion-item style="padding-left: 0px;">
                     <ion-input
+                        id="mensaje"
                         type="text"
                         value=""
                         [(ngModel)]="mensaje"
@@ -54,21 +58,24 @@
                         (keyup.enter)="enviar()"></ion-input>
                 </ion-item>
             </td>
-            <td>
-                <button
-                    (click)="enviar()"
-                    ion-button
-                    class="bontonWpp"
-                    round>
-                    <ion-icon name="md-send"></ion-icon>
-                </button>
-
+            <td style="display: flex;">
                 <button
                     (click)="getMedia()"
                     ion-button
                     class="bontonImagen"
                     round>
-                    <ion-icon name="md-image"></ion-icon>
+                    <ion-icon
+                        name="md-image"></ion-icon>
+                </button>
+
+                <button
+                    (click)="enviar()"
+                    ion-button
+                    class="bontonWpp"
+                    round>
+                    <ion-icon
+                        name="md-send"
+                        style="padding-left: 5px;"></ion-icon>
                 </button>
             </td>
         </tr>
