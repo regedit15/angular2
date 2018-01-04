@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FCM} from '@ionic-native/fcm';
 import {TOPICS_MENSAJES} from '../../environments/environment';
 import {ChatService} from '../../app/services/chat.service';
-import {Camera, CameraOptions} from '@ionic-native/camera';
+import {Camera} from '@ionic-native/camera';
 import * as firebase from 'firebase';
 
 declare var window;

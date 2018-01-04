@@ -10,14 +10,10 @@ import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {Facebook} from '@ionic-native/facebook';
 import {Headers, Http, RequestOptions} from '@angular/http';
 import {
-    CLAVE_DE_SERVIDOR,
-    TOPICS_MENSAJES,
-    URL_CHATS,
-    URL_PUSH_NOTIFICATIONS,
-    URL_USUARIOS,
+    CLAVE_DE_SERVIDOR, TOPICS_MENSAJES, URL_CHATS, URL_PUSH_NOTIFICATIONS, URL_USUARIOS,
     URL_USUARIOS_JSON
 } from '../../environments/environment';
-import { Usuario } from "../interfaces/usuario.interface";
+import {Usuario} from '../interfaces/usuario.interface';
 
 @Injectable()
 export class ChatService {
