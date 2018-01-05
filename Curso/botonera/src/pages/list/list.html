@@ -1,23 +1,32 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button
+                menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Juegazo</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
+
+    <div id="juego"></div>
+    <br>
+    <button
+        *ngIf="!mostrarBotonMobile"
+        onmousedown="accelerate(-0.2)"
+        onmouseup="accelerate(0.05)"
+        ion-button
+        round>
+        PRESIONAME!
     </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+
+    <button
+        *ngIf="mostrarBotonMobile"
+        (touchstart)="subir(-0.2)"
+        (touchend)="subir(0.05)"
+        ion-button
+        round>
+        PRESIONAME!
+    </button>
 </ion-content>
