@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class SpotifyService {
 
     urlBusqueda: string = 'https://api.spotify.com/v1/search';
     urlArtista: string = 'https://api.spotify.com/v1/artists';
-    token: string = 'BQCwN22QYw7kTZlwOX_OLmmlbmitXNUjwAt4mi96rCLlFja7XUyILcmEIWEBt140HBxSi6z0XPW7690x2HNFNw';
+    token: string = 'BQBD2iiCKcn-isriQAg3p3lIcSqffqKRqLQqRQ_1RpMNwJ-zRU5Cl6pbRhiI_OKNjfAe_ZLhqiAHGSwnopc';
 
     // private http: Http
     constructor(private http: Http) {
