@@ -9,29 +9,35 @@ import {ListPage} from '../pages/list/list';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Media} from '@ionic-native/media';
+import {SocialSharing} from '@ionic-native/social-sharing';
+import {BotonComponent} from '../components/boton/boton.component';
+import {FiltroPipe} from '../pipes/filtro.pipe';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    ListPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    Media,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    declarations: [
+        MyApp,
+        HomePage,
+        ListPage,
+        BotonComponent,
+        FiltroPipe
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(MyApp),
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        HomePage,
+        ListPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        Media,
+        SocialSharing,
+        {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ]
 })
 export class AppModule {
 }

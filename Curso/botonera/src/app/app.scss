@@ -15,7 +15,7 @@
 // automatically applied to the <body> element in the app.
 
 .botonCircular {
-    //background-color: #53b971;
+    //background-color: #00bcd4;
     border-radius: 50%;
     padding: 19px;
     //width: 0px;
@@ -25,19 +25,54 @@
     height: 80px;
 }
 
-.imagenFondo {
-    ////background-image: url('../assets/imgs/deSoloPensarEnMaiame.jpg') !important;
-    //background-image: url('../assets/imgs/Captura.PNG') !important;
-    //background-position: right 57px !important;
-    ////height: 100%;
-    //background-position: center;
-    //background-repeat: no-repeat;
-    //background-size: cover;
+.letraChica {
+    font-size: 11px;
+}
 
-    background: url(../assets/imgs/deSoloPensarEnMaiame.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% calc(100% - 57px);
-    background-position: right 57px;
+button.botonCircular.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    //background-color: #00bcd4;
+}
+
+.botonCompartir {
+    background-color: #53b971;
+    border-radius: 50%;
+    padding: 19px;
+    //width: 0px;
+    //height: 0px;
+    white-space: inherit;
+    width: 28px;
+    height: 28px;
+}
+
+button.botonCompartir.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: #53b971;
+}
+
+//.imagenFondo {
+//    ////background-image: url('../assets/imgs/deSoloPensarEnMaiame.jpg') !important;
+//    //background-image: url('../assets/imgs/captura.PNG') !important;
+//    //background-position: right 57px !important;
+//    ////height: 100%;
+//    //background-position: center;
+//    //background-repeat: no-repeat;
+//    //background-size: cover;
+//
+//    background: url(../assets/imgs/taringaFondo.jpg);
+//    background-repeat: no-repeat;
+//    background-size: 100% calc(100% - 57px);
+//    background-position: right 57px;
+//}
+
+.imagenFondo {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: 439px;
+    width: 100%;
+    height: calc(100% + 64px);
+    top: 0px;
 }
 
 canvas {
@@ -45,3 +80,8 @@ canvas {
     background-color: #f1f1f1;
     width: 100%;
 }
+
+.colorAzul {
+    background-color: #0071b7;
+}
+

@@ -10,39 +10,14 @@
 
 <ion-content
     padding
-    class="imagenFondo">
+    class="colorAzul">
 
-    <button
-        (click)="play('./assets/sonidos/BastaChicos.mp3')"
-        ion-button
-        class="botonCircular"
-        round>
-        Basta chicos
-    </button>
+    <img class="imagenFondo"
+         src="../assets/imgs/taringaFondo.jpg"
+         alt="">
 
-    <button
-        (click)="play('./assets/sonidos/FortMaiameee.mp3')"
-        ion-button
-        class="botonCircular"
-        round>
-        Maiamee
-    </button>
+    <app-boton
+        [botones]="botones"></app-boton>
 
-    <!--<button-->
-    <!--onclick="startGame()"-->
-    <!--ion-button-->
-    <!--class="botonCircular"-->
-    <!--round>-->
-    <!--play-->
-    <!--</button>-->
 
-    <!--<div id="juego"></div>-->
-    <!--<br>-->
-    <!--<button-->
-    <!--onmousedown="accelerate(-0.2)"-->
-    <!--onmouseup="accelerate(0.05)"-->
-    <!--ion-button-->
-    <!--round>-->
-    <!--ACCELERATE-->
-    <!--</button>-->
 </ion-content>

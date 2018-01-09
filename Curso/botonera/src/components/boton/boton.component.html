@@ -1,0 +1,43 @@
+<div>
+    <ion-item style="padding-left: 0px;">
+        <ion-input
+            type="text"
+            value=""
+            [(ngModel)]="searchText"
+            placeholder="Filtra como un champion"></ion-input>
+    </ion-item>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col
+                *ngFor="let boton of botones | filtro : searchText">
+                <table style="margin: auto">
+                    <tr>
+                        <td>
+                            <button
+                                (click)="play('./assets/sonidos/' + boton.nombreArchivo)"
+                                ion-button
+                                class="botonCircular"
+                                [ngClass]="{letraChica : boton.letraChica}"
+                                color="dark"
+                                round>
+                                {{boton.nombreBoton}}
+                            </button>
+                        </td>
+                        <td>
+                            <button
+                                (click)="compartir('BastaChicos.mp3')"
+                                ion-button
+                                class="botonCompartir"
+                                round>
+                                <ion-icon
+                                    name="md-share"></ion-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</div>
