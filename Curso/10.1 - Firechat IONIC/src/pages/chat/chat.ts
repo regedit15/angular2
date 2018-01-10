@@ -16,7 +16,7 @@ export class ChatPage implements OnInit {
 
     mensaje = '';
     elemento: any;
-    largo
+    largo;
     myPicRef;
 
     public Fbref: any;
@@ -39,7 +39,7 @@ export class ChatPage implements OnInit {
         }
 
         // this.ancho = window.innerWidth - 50;
-        this.largo = window.innerHeight - 175;
+        this.largo = window.innerHeight - 140;
 
         this.Fbref = firebase.storage().ref();
 

@@ -1,11 +1,8 @@
 <div>
-    <ion-item style="padding-left: 0px;">
-        <ion-input
-            type="text"
-            value=""
-            [(ngModel)]="searchText"
-            placeholder="Filtra como un champion"></ion-input>
-    </ion-item>
+
+    <ion-searchbar [(ngModel)]="searchText"
+                   placeholder="Filtra como un champion"
+                   style="max-width: 450px; margin: auto;"></ion-searchbar>
 
     <ion-grid>
         <ion-row>

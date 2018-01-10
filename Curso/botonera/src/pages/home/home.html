@@ -1,10 +1,14 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar id="navbarHome">
         <button ion-button
                 menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>QuePicardiApp</ion-title>
+        <ion-title>
+            <div class="tituloMenu">
+                QuePicardiApp
+            </div>
+        </ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -12,12 +16,12 @@
     padding
     class="colorAzul">
 
+
     <img class="imagenFondo"
-         src="../assets/imgs/taringaFondo.jpg"
+         src="assets/imgs/taringaFondo.jpg"
          alt="">
 
     <app-boton
         [botones]="botones"></app-boton>
-
 
 </ion-content>

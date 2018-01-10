@@ -68,3 +68,12 @@ button.bontonWpp.button.button-md.button-default.button-default-md.button-round.
 .item-inner {
     padding-right: 0px !important;
 }
+
+#mensaje > div > div {
+    display: none;
+}
+
+#mensaje > div > input {
+    padding-left: 8px;
+    padding-right: 8px;
+}

@@ -48,21 +48,6 @@ button.botonCompartir.button.button-md.button-default.button-default-md.button-r
     background-color: #53b971;
 }
 
-//.imagenFondo {
-//    ////background-image: url('../assets/imgs/deSoloPensarEnMaiame.jpg') !important;
-//    //background-image: url('../assets/imgs/captura.PNG') !important;
-//    //background-position: right 57px !important;
-//    ////height: 100%;
-//    //background-position: center;
-//    //background-repeat: no-repeat;
-//    //background-size: cover;
-//
-//    background: url(../assets/imgs/taringaFondo.jpg);
-//    background-repeat: no-repeat;
-//    background-size: 100% calc(100% - 57px);
-//    background-position: right 57px;
-//}
-
 .imagenFondo {
     position: absolute;
     margin-left: auto;
@@ -73,6 +58,7 @@ button.botonCompartir.button.button-md.button-default.button-default-md.button-r
     width: 100%;
     height: calc(100% + 64px);
     top: 0px;
+    z-index: -1;
 }
 
 canvas {
@@ -85,3 +71,18 @@ canvas {
     background-color: #0071b7;
 }
 
+#navbarHome > div.toolbar-background.toolbar-background-md {
+    background-color: #000000;
+}
+
+#toolbarMenu > div.toolbar-background.toolbar-background-md {
+    background-color: #00bcd4;
+}
+
+button.bar-buttons.bar-buttons-md.bar-button.bar-button-md.bar-button-default.bar-button-default-md.bar-button-menutoggle.bar-button-menutoggle-md {
+    color: #FF9800;
+}
+
+.tituloMenu {
+    color: #FFEB3B;
+}
