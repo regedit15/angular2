@@ -7,6 +7,7 @@ export class PeliculasService {
 
     private apikey = 'b2da3dbeba1a75323639a13ff72fd7ff';
     private urlMoviedb = 'https://api.themoviedb.org/3';
+    peliculasBuscadas: any [] = [];
 
     constructor(private jsonp: Jsonp) {
     }
@@ -28,19 +29,17 @@ export class PeliculasService {
     getPeliculasEnCatelera() {
 
         let diaActual = new Date();
-        let dia = diaActual.getDate();
-        let mes = diaActual.getMonth() + 1;
-        let anio = diaActual.getFullYear();
+        let fechaDesde = this.getFechaEnString(diaActual);
+        diaActual.setDate(diaActual.getDate() + 7);
+        let fechaHasta = this.getFechaEnString(diaActual);
 
-        let fechaFin = `${anio}-${mes}-${dia}`;
-
-        diaActual.setDate(diaActual.getDate() - 15);
-
-        let fechaInicio = `${anio}-${mes}-${dia}`;
-
-        let url = `${ this.urlMoviedb }/discover/movie?primary_release_date.gte=${fechaInicio}&primary_release_date.lte=${fechaFin}&api_key=${this.apikey}&language=es&callback=JSONP_CALLBACK`;
+        let url = `${ this.urlMoviedb }/discover/movie?primary_release_date.gte=${fechaDesde}&primary_release_date.lte=${fechaHasta}&api_key=${this.apikey}&language=es&callback=JSONP_CALLBACK`;
 
         return this.jsonp.get(url).map(res => res.json());
+    }
+
+    getFechaEnString(fecha) {
+        return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
     }
 
     buscarPelicula(texto: string) {
@@ -48,7 +47,10 @@ export class PeliculasService {
         let url = `${ this.urlMoviedb }/search/movie?query=${ texto }&sort_by=popularity.desc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
 
         return this.jsonp.get(url)
-            .map(res => res.json());
+            .map(res => {
+                this.peliculasBuscadas = res.json().results;
+                return res.json();
+            });
     }
 
     getPelicula(id: string) {

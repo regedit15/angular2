@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PeliculasService} from '../../services/peliculas.service';
-import {URL_IMAGEN} from '../../../environments/environment';
 
 @Component({
     selector: 'app-ver-pelicula',
@@ -10,12 +9,16 @@ import {URL_IMAGEN} from '../../../environments/environment';
 })
 export class VerPeliculaComponent implements OnInit {
 
-    public pelicula;
-    public URL_IMAGEN = URL_IMAGEN;
+    pelicula;
+    pagina;
+    texto;
 
     constructor(private activatedRoute: ActivatedRoute, private peliculasService: PeliculasService, private router: Router) {
 
         this.activatedRoute.params.subscribe(params => {
+
+            this.pagina = params['pagina'];
+            this.texto = params['texto'];
 
             peliculasService.getPelicula(params['id']).subscribe(pelicula => {
                 this.pelicula = pelicula;
@@ -27,6 +30,7 @@ export class VerPeliculaComponent implements OnInit {
     ngOnInit() {
 
     }
+
 
     volver() {
         this.activatedRoute.params.subscribe(params => {

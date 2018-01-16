@@ -6,7 +6,7 @@ import {VerPeliculaComponent} from './components/ver-pelicula/ver-pelicula.compo
 const APP_ROUTES: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'buscar/:texto', component: BuscadorComponent},
-    {path: 'ver/:id/:vengode/:textobuscado', component: VerPeliculaComponent},
+    {path: 'ver/:id/:pagina/:texto', component: VerPeliculaComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, {useHash: true});

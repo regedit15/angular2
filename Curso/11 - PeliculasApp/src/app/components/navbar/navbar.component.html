@@ -2,7 +2,7 @@
     class="navbar navbar-expand-lg navbar-light"
     style="background-color: #e3f2fd;">
     <a class="navbar-brand"
-       href="#">Navbar</a>
+       href="#">AllMovie</a>
     <button class="navbar-toggler"
             type="button"
             data-toggle="collapse"
@@ -25,11 +25,12 @@
             <li class="nav-item"
                 routerLinkActive="active">
                 <a class="nav-link"
-                   [routerLink]="['buscar']">Buscar
+                   [routerLink]="['buscar', '']">Buscar
                 </a>
             </li>
         </ul>
-        <div style="display: flex">
+        <form class="form-inline my-2 my-lg-0"
+              (ngSubmit)="buscar(buscarBoton.value)">
             <input class="form-control mr-sm-2"
                    type="text"
                    placeholder="Título"
@@ -39,6 +40,6 @@
                     type="button"
                     (click)="buscar(buscarBoton.value)">Buscar
             </button>
-        </div>
+        </form>
     </div>
 </nav>

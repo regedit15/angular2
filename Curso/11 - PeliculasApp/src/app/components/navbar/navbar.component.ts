@@ -15,6 +15,11 @@ export class NavbarComponent implements OnInit {
     }
 
     buscar(texto: string) {
+
+        if (texto.length === 0) {
+            return;
+        }
+
         this.router.navigate(['/buscar', texto]);
     }
 

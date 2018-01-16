@@ -1,16 +1,38 @@
-<div class="container">
-    <h1>Resultados para la palabra: "{{texto}}"</h1>
-    <hr>
-    <div class="row"
-         *ngIf="peliculasBuscadas">
-        <div class="col-md-4"
-             *ngFor="let x of peliculasBuscadas">
-            <img *ngIf="x.poster_path"
-                 src="{{URL_IMAGEN + x.poster_path}}"
-                 alt=""
-                 class="rounded float-left"
-                 style="margin-bottom: 5px; cursor: pointer"
-                 [routerLink]="['/ver', x.id, 'buscador', texto]">
+<div class="container main-container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Buscar</label>
+                <input type="text"
+                       name="texto"
+                       value=""
+                       class="form-control"
+                       placeholder="Titulo"
+                       [(ngModel)]="texto"
+                       (keyup.enter)="buscar(texto)">
+            </div>
         </div>
     </div>
+    <div class="row animated fadeIn fast">
+        <div class="card-columns">
+            <div class="card"
+                 *ngFor="let x of peliculasService.peliculasBuscadas">
+                <img class="card-img-top"
+                     [src]="x | urlPelicula"
+                     [alt]="x.original_title">
+                <div class="card-body">
+                    <h5 class="card-title">{{x.original_title}}</h5>
+                    <p class="card-text text-justify">{{x.overview | slice:0:250}}...</p>
+                </div>
+
+                <button type="button"
+                        class="btn btn-outline-primary btn-block"
+                        [routerLink]="['/ver', x.id, 'buscar', texto]">
+                    Ver Mas
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>

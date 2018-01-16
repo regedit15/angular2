@@ -19,14 +19,30 @@ export class BuscadorComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.texto = params['texto'];
 
-            peliculasService.buscarPelicula(this.texto).subscribe(peliculas => {
-                this.peliculasBuscadas = peliculas.results;
-                // console.log(this.peliculasBuscadas);
-            });
+            if (this.texto) {
+                this.buscar(this.texto);
+            }
+
+            // peliculasService.buscarPelicula(this.texto).subscribe(peliculas => {
+            //     this.peliculasBuscadas = peliculas.results;
+            //     // console.log(this.peliculasBuscadas);
+            // });
         });
     }
 
     ngOnInit() {
     }
+
+    buscar(texto) {
+        if (texto.length === 0) {
+            return;
+        }
+
+        this.peliculasService.buscarPelicula(texto).subscribe(peliculas => {
+            this.peliculasBuscadas = peliculas.results;
+            // console.log(this.peliculasBuscadas);
+        });
+    }
+
 
 }

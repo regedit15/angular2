@@ -1,59 +1,60 @@
-<div *ngIf="pelicula">
-    <div class="container">
+<div *ngIf="pelicula"
+     class="container main-container animated fadeIn fast">
 
-        <h1>{{pelicula.title}}</h1>
-
-        <div class="row">
-            <div class="col-md-4">
-                <img src="{{URL_IMAGEN + pelicula.poster_path}}"
-                     alt=""
-                     class="rounded img-thumbnail"
-                     (click)="verPelicula(x.id)"
-                     style="width: 100%">
-            </div>
-            <div class="col-md-8">
-                <h3>Sinopsis</h3>
-                <hr>
-                <p>{{pelicula.overview}}</p>
+    <h1>{{pelicula.title}}</h1>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{{pelicula | urlPelicula:true}}"
+                 alt="pelicula.original_title"
+                 class="img-thumbnail img-fluid"
+                 (click)="verPelicula(x.id)"
+                 style="width: 100%">
+        </div>
+        <div class="col-md-7">
+            <h3>Sinopsis</h3>
+            <hr>
+            <p>{{pelicula.overview}}</p>
+            <div *ngIf="pelicula.tagline">
                 <br>
                 <h6 style="text-align: center">{{pelicula.tagline}}...</h6>
-                <br>
-                <div class="row">
-                    <div class="col-md-6"
-                         style=" margin-bottom: 20px;">
-                        <div class="card text-white bg-info">
-                            <div class="card-header"
-                                 style="font-weight: bold;">Popularidad
-                            </div>
-                            <div class="card-body tarjeta">
-                                {{pelicula.popularity | number:'1.2-2'
-                                | formatNro}}
-                            </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6"
+                     style=" margin-bottom: 20px;">
+                    <div class="card text-white bg-info">
+                        <div class="card-header"
+                             style="font-weight: bold;">Popularidad
+                        </div>
+                        <div class="card-body tarjeta">
+                            {{pelicula.popularity | number:'1.2-2'
+                            | formatNro}}
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card text-white bg-warning">
-                            <div class="card-header"
-                                 style="font-weight: bold;">Voto Promedio
-                            </div>
-                            <div class="card-body tarjeta">
-                                <h5 class="card-title"
-                                    style="text-align: center">{{pelicula.vote_average}}/10</h5>
-                            </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card text-white bg-warning">
+                        <div class="card-header"
+                             style="font-weight: bold;">Voto Promedio
+                        </div>
+                        <div class="card-body tarjeta">
+                            <h5 class="card-title"
+                                style="text-align: center">{{pelicula.vote_average}}/10</h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <button type="button"
-                class="btn btn-outline-secondary"
-                style="margin-left: auto; display: -webkit-box;"
-                (click)="volver()">
-            <i class="fa fa-arrow-left fa-fw"
-               aria-hidden="true"></i>Volver
-        </button>
-        <br>
     </div>
+    <br>
+    <button type="button"
+            class="btn btn-outline-secondary"
+            style="margin-left: auto; display: -webkit-box;"
+            (click)="volver()"
+            [routerLink]="['/' + pagina, texto]">
+        <i class="fa fa-arrow-left fa-fw"
+           aria-hidden="true"></i>Volver
+    </button>
+    <br>
 </div>
 
