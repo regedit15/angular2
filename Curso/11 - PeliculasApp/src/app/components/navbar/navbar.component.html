@@ -1,0 +1,44 @@
+<nav
+    class="navbar navbar-expand-lg navbar-light"
+    style="background-color: #e3f2fd;">
+    <a class="navbar-brand"
+       href="#">Navbar</a>
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse"
+         id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"
+                routerLinkActive="active">
+                <a class="nav-link"
+                   [routerLink]="['home']">Home
+                </a>
+            </li>
+            <li class="nav-item"
+                routerLinkActive="active">
+                <a class="nav-link"
+                   [routerLink]="['buscar']">Buscar
+                </a>
+            </li>
+        </ul>
+        <div style="display: flex">
+            <input class="form-control mr-sm-2"
+                   type="text"
+                   placeholder="Título"
+                   (keyup.enter)="buscar(buscarBoton.value)"
+                   #buscarBoton>
+            <button class="btn btn-outline-info my-2 my-sm-0"
+                    type="button"
+                    (click)="buscar(buscarBoton.value)">Buscar
+            </button>
+        </div>
+    </div>
+</nav>

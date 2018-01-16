@@ -102,8 +102,16 @@ export class ChatService {
                         this.twitterConnect.login()
                             .then(res => {
                                 // console.log(res);
-                                this.procesarUsuario(res.userName, res.userId);
-                                resolve();
+
+                                this.twitterConnect.showUser().then(
+                                    res => {
+                                        // console.log(res);
+                                        this.procesarUsuario(res.userName, res.userId, res.profile_image_url);
+                                        resolve();
+                                    }
+                                ).catch(error => {
+                                    console.log(error);
+                                });
                             }).catch(err => console.error(err));
                         break;
 
@@ -113,7 +121,7 @@ export class ChatService {
                             this.fb.api(respuesta.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(
                                 response => {
                                     // console.log(res);
-                                    this.procesarUsuario(response.first_name, respuesta.authResponse.userID);
+                                    this.procesarUsuario(response.first_name, respuesta.authResponse.userID, '');
                                     resolve();
                                 });
                         });
@@ -121,10 +129,14 @@ export class ChatService {
 
                     case 'google':
 
-                        this.googlePlus.login({})
+                        let SCOPES = 'https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/games https://www.googleapis.com/auth/plus.login';
+
+
+                        this.googlePlus.login({'scopes': SCOPES})
                             .then(res => {
-                                // console.log(res);
-                                this.procesarUsuario(res.displayName, res.userId);
+                                console.log('googleeeeeeeeeeeeeeeeee2:');
+                                console.log(res);
+                                this.procesarUsuario(res.displayName, res.userId, '');
                                 resolve();
                             }).catch(err => console.error(err));
                         break;
@@ -147,7 +159,7 @@ export class ChatService {
                 this.afAuth.auth.signInWithPopup(provider)
                     .then(respuesta => {
                         // console.log(res);
-                        this.procesarUsuario(respuesta.user.displayName, respuesta.user.uid);
+                        this.procesarUsuario(respuesta.user.displayName, respuesta.user.uid, respuesta.user.photoURL);
 
                         // se guarda en el local storage
                         localStorage.setItem(this.USUARIO, JSON.stringify(this.usuario));
@@ -163,6 +175,15 @@ export class ChatService {
         localStorage.removeItem(this.USUARIO);
         this.usuario = null;
         this.afAuth.auth.signOut();
+
+        // TwitterConnect.logout(
+        //     function() {
+        //         console.log('Successful logout!');
+        //     },
+        //     function() {
+        //         console.log('Error logging out');
+        //     }
+        // );
     }
 
     enviarMensaje(token, titulo, mensaje) {
@@ -193,7 +214,7 @@ export class ChatService {
         });
     }
 
-    procesarUsuario(displayName: string, uid: string) {
+    procesarUsuario(displayName: string, uid: string, foto: string) {
         if (this.usuario == null) {
             this.usuario = {};
         }

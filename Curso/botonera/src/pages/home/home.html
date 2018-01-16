@@ -22,6 +22,18 @@
          alt="">
 
     <app-boton
-        [botones]="botones"></app-boton>
+        [botones]="botones"
+        [palabras]="colores"></app-boton>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    Html:
+    <div *ngFor="let x of colores">
+        {{x}}
+
+    </div>
 
 </ion-content>

@@ -4,6 +4,15 @@
                    placeholder="Filtra como un champion"
                    style="max-width: 450px; margin: auto;"></ion-searchbar>
 
+    <button
+        (click)="quitarPalabras()"
+        ion-button
+        class="botonCircular"
+        color="dark"
+        round>
+        quitar
+    </button>
+
     <ion-grid>
         <ion-row>
             <ion-col
@@ -23,7 +32,7 @@
                         </td>
                         <td>
                             <button
-                                (click)="compartir('BastaChicos.mp3')"
+                                (click)="compartir(boton.nombreArchivo)"
                                 ion-button
                                 class="botonCompartir"
                                 round>
@@ -36,5 +45,12 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+    <br>
 
+    Directiva:
+
+    <div *ngFor="let x of palabras">
+        {{x}}
+
+    </div>
 </div>

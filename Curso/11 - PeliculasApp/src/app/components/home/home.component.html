@@ -1,0 +1,46 @@
+<div class="container">
+
+    <h1>Peliculas En cartelera</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4"
+             *ngFor="let x of peliculasEnCartelera">
+            <img *ngIf="x.poster_path"
+                 src="{{URL_IMAGEN + x.poster_path}}"
+                 alt=""
+                 class="rounded float-left"
+                 style="margin-bottom: 5px; cursor: pointer"
+                 (click)="verPelicula(x.id)"
+                 [routerLink]="['/ver', x.id, 'home', '']">
+        </div>
+    </div>
+    <br>
+    <h1>Peliculas Populares</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4"
+             *ngFor="let x of peliculasPopulares">
+            <img *ngIf="x.poster_path"
+                 src="{{URL_IMAGEN + x.poster_path}}"
+                 alt=""
+                 class="rounded float-left"
+                 style="margin-bottom: 5px; cursor: pointer"
+                 [routerLink]="['/ver', x.id, 'home', '']">
+        </div>
+    </div>
+    <br>
+    <h1>Peliculas Para Populares Chicos</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4"
+             *ngFor="let x of peliculasPopularesChicos">
+            <img *ngIf="x.poster_path"
+                 src="{{URL_IMAGEN + x.poster_path}}"
+                 alt=""
+                 class="rounded float-left"
+                 style="margin-bottom: 5px; cursor: pointer"
+                 [routerLink]="['/ver', x.id, 'home', '']">
+        </div>
+    </div>
+
+</div>

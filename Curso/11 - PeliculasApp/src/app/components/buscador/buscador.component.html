@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Resultados para la palabra: "{{texto}}"</h1>
+    <hr>
+    <div class="row"
+         *ngIf="peliculasBuscadas">
+        <div class="col-md-4"
+             *ngFor="let x of peliculasBuscadas">
+            <img *ngIf="x.poster_path"
+                 src="{{URL_IMAGEN + x.poster_path}}"
+                 alt=""
+                 class="rounded float-left"
+                 style="margin-bottom: 5px; cursor: pointer"
+                 [routerLink]="['/ver', x.id, 'buscador', texto]">
+        </div>
+    </div>
+</div>

@@ -10,7 +10,9 @@ import {Botones} from '../../interfaces/boton.interface';
 export class BotonComponent implements OnInit {
 
     @Input() botones: Botones[];
+    @Input('appData') palabras: string[];
 
+    //
     constructor(private socialSharing: SocialSharing) {
     }
 
@@ -38,6 +40,11 @@ export class BotonComponent implements OnInit {
         //     console.log('todo mal!:' + error);
         // });
         // --------------------------
+    }
+
+
+    quitarPalabras() {
+        this.palabras = [];
     }
 
 
