@@ -5,14 +5,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SpotifyService {
 
-    //BQCCmRUoS-vPqoDkCTj4NQ5DOsG2UT2DXRoh20Ou2MCVB07pBkuPTvyekaZSY55d2SGD8FYeZWXbQcBviNOdSA
     artistas: any[];
 
-    urlBusqueda: string = 'https://api.spotify.com/v1/search';
-    urlArtista: string = 'https://api.spotify.com/v1/artists';
-    token: string = 'BQCN30G6212WTEGE6lKGwGbD2q6dkVqEmRLWXMG0-oWXaeSrYy5dxguyEMYQMkyK930RrZvmfuPUiy5mRdo';
+    urlBusqueda = 'https://api.spotify.com/v1/search';
+    urlArtista = 'https://api.spotify.com/v1/artists';
+    token = 'BQCN30G6212WTEGE6lKGwGbD2q6dkVqEmRLWXMG0-oWXaeSrYy5dxguyEMYQMkyK930RrZvmfuPUiy5mRdo';
 
-    // private http: Http
     constructor(private http: Http) {
     }
 
