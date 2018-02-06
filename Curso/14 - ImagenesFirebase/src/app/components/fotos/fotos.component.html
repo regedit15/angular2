@@ -1,0 +1,22 @@
+<div class="card-columns">
+
+    <div class="card"
+         *ngFor="let item of items | async">
+        aaa
+        <img class="card-img-top"
+             [src]="item.url">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.nombre }}</h5>
+        </div>
+    </div>
+
+</div>
+
+
+<div *ngIf="usuario; else login">
+    Bienvenido {{usuario}}
+</div>
+
+<ng-templtate #login>
+    Por favor ingrese
+</ng-templtate>
