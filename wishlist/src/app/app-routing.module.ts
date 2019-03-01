@@ -7,8 +7,7 @@ import {PendientesComponent} from './pendientes/pendientes.component';
 
 const routes: Routes = [
     {path: 'agregar', component: AgregarComponent},
-    // {path: 'detalle/:lista/:index', component: DetalleComponent},
-    {path: 'detalle/:index', component: DetalleComponent},
+    {path: 'detalle', component: DetalleComponent},
     {path: 'terminados', component: TerminadosComponent},
     {path: 'pendientes', component: PendientesComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'pendientes'}

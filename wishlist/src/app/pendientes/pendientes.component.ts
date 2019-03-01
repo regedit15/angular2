@@ -18,6 +18,7 @@ export class PendientesComponent {
     }
 
     verDetalle(lista, index) {
-        this.router.navigate(['/detalle', index]);
+        this.listaDeseosService.listaSeleccionada = lista;
+        this.router.navigate(['/detalle']);
     }
 }

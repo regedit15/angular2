@@ -28,9 +28,10 @@
 
         <ion-item color="dark"
                   (click)="verDetalle(lista, i)">
-            <h2>{{lista.nombre}}</h2>
-            <ion-note item-right>
-                {{lista.items.length}} items
+
+            <ion-label>{{lista.nombre}}</ion-label>
+            <ion-note slot="end"
+                      color="light">{{lista.items.length}} items
             </ion-note>
         </ion-item>
 
@@ -67,5 +68,4 @@
             </ion-icon>
         </ion-button>
     </ion-fab>
-
 </ion-content>

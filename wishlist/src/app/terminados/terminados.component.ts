@@ -14,6 +14,7 @@ export class TerminadosComponent {
     }
 
     verDetalle(lista, index) {
-        this.router.navigate(['/heroe', index]);
+        this.listaDeseosService.listaSeleccionada = lista;
+        this.router.navigate(['/detalle']);
     }
 }

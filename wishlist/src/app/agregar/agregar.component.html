@@ -15,7 +15,8 @@
         <ion-card-header>
 
             <ion-item>
-                <ion-label position="floating">Nombre
+                <ion-label class="negrita">
+                    Nombre
                 </ion-label>
                 <ion-input [(ngModel)]="nombreLista"></ion-input>
             </ion-item>
@@ -23,7 +24,8 @@
 
         <ion-card-content>
             <ion-item>
-                <ion-label position="floating">Item:
+                <ion-label class="negrita">
+                    Item:
                 </ion-label>
                 <ion-input (keyup.enter)="agregar()"
                            [(ngModel)]="nombreItem"></ion-input>

@@ -6,6 +6,7 @@ import {Lista} from '../clases/listas';
 export class ListaDeseosService {
 
     listas: Lista[] = [];
+    listaSeleccionada;
 
     constructor() {
         // let lista1 = new Lista('Compras de supermercado')
@@ -35,8 +36,8 @@ export class ListaDeseosService {
         this.actualizarData();
     }
 
-    eliminarLista(index: number) {
-        this.listas.splice(index, 1);
+    eliminarListaSeleccionada() {
+        this.listas.splice(this.listas.indexOf(this.listaSeleccionada), 1);
         this.actualizarData();
     }
 }
