@@ -1,0 +1,36 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+
+.text-center {
+  text-align: center;
+}
+
+.item-md-dark .label-md h2 {
+  color: #fff;
+}
+
+.tachado {
+  text-decoration: line-through;
+}
+
+.caja-vacia {
+  color: #C7C7C7;
+  padding-top: 40%;
+}
+
+.caja-vacia p {
+  font-size: 30px;
+}
+
+.icono-grande {
+  font-size: 100px;
+}
