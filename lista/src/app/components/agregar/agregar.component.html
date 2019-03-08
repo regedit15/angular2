@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Nueva Lista
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+
+        <ion-item>
+            <ion-label position="floating">Nombre
+            </ion-label>
+            <ion-input [(ngModel)]="nombre"></ion-input>
+        </ion-item>
+    </ion-card>
+
+
+    <ion-card>
+        <ion-label position="floating">Item
+        </ion-label>
+        <ion-input [(ngModel)]="nombreItem"></ion-input>
+    </ion-card>
+
+    <ion-button (click)="agregarItem()">Agregar</ion-button>
+
+    <ion-list>
+        <ion-item *ngFor="let x of items">
+            <ion-label>{{x.nombre}}</ion-label>
+        </ion-item>
+    </ion-list>
+
+
+    <ion-button (click)="guardarLista()">Aceptar</ion-button>
+
+
+</ion-content>

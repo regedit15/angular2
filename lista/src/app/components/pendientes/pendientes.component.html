@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Pendientes
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+    <div *ngFor="let lista of listaService.listas | pendiente ">
+
+        <ion-card>
+
+            <ion-item color="black">
+                <ion-label>
+                    {{lista.nombre}}
+                </ion-label>
+            </ion-item>
+
+            <ion-list>
+                <ion-item *ngFor="let item of lista.items">
+                    <ion-label [ngClass]="{'tachado': item.terminado }">
+                        <ion-checkbox color="primary"
+                                      [checked]="item.terminado"
+                                      (ionChange)="cambiarEstado(item)"></ion-checkbox>
+                        {{item.nombre}}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+
+        <br>
+    </div>
+
+    <!--<ion-item>-->
+    <!--<ion-label position="floating">Nombre-->
+    <!--</ion-label>-->
+    <!--<ion-input [(ngModel)]="nombre"></ion-input>-->
+    <!--</ion-item>-->
+    <!--</ion-card>-->
+
+
+    <!--<ion-card>-->
+    <!--<ion-label position="floating">Item-->
+    <!--</ion-label>-->
+    <!--<ion-input [(ngModel)]="nombreItem"></ion-input>-->
+    <!--</ion-card>-->
+
+    <!--<ion-button (click)="agregarItem()">Agregar</ion-button>-->
+
+    <!--<ion-list>-->
+    <!--<ion-item *ngFor="let x of items">-->
+    <!--<ion-label>{{x.nombre}}</ion-label>-->
+    <!--</ion-item>-->
+    <!--</ion-list>-->
+
+
+    <!--<ion-button (click)="guardarLista()">Aceptar</ion-button>-->
+
+
+</ion-content>
